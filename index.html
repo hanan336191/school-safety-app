@@ -3,1320 +3,538 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#1769e0">
-
 <title>School Safety | Student Protection</title>
 
 <style>
-:root {
-  --blue: #1769e0;
-  --dark: #12346b;
-  --light: #edf5ff;
-  --white: #ffffff;
-  --text: #24344d;
-  --muted: #708099;
-  --border: #e2eaf5;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background: #f4f7fc;
-  color: var(--text);
-  line-height: 1.5;
-}
-
-button, input, select {
-  font: inherit;
-}
-
-button {
-  cursor: pointer;
-}
-
-header {
-  background: white;
-  padding: 15px 5%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  border-bottom: 1px solid var(--border);
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.logo {
-  background: var(--blue);
-  color: white;
-  padding: 10px;
-  border-radius: 13px;
-  font-size: 25px;
-}
-
-.brand h1 {
-  font-size: 19px;
-  color: var(--dark);
-}
-
-.brand p {
-  font-size: 11px;
-  color: var(--muted);
-}
-
-select {
-  max-width: 130px;
-  padding: 9px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: white;
-}
-
-main {
-  max-width: 1100px;
-  margin: auto;
-  padding: 24px 18px 100px;
-}
-
-.hero {
-  background: linear-gradient(130deg, #1555bd, #3188fa);
-  color: white;
-  padding: 30px 25px;
-  border-radius: 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  overflow: hidden;
-}
-
-.hero h2 {
-  font-size: clamp(25px, 5vw, 38px);
-  line-height: 1.2;
-  margin: 12px 0;
-}
-
-.hero p {
-  max-width: 500px;
-  font-size: 14px;
-  opacity: .95;
-}
-
-.robot {
-  font-size: clamp(65px, 12vw, 110px);
-  background: #ffffff22;
-  border-radius: 50%;
-  padding: 10px;
-  flex-shrink: 0;
-}
-
-.badge {
-  display: inline-block;
-  background: #ffffff25;
-  padding: 5px 10px;
-  border-radius: 30px;
-  font-size: 12px;
-}
-
-.primary, .secondary {
-  border: 0;
-  border-radius: 11px;
-  padding: 12px 16px;
-  font-weight: bold;
-  margin-top: 16px;
-}
-
-.primary {
-  background: white;
-  color: var(--blue);
-}
-
-.secondary {
-  background: var(--blue);
-  color: white;
-}
-
-.section-title {
-  margin: 30px 0 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-}
-
-.section-title h2 {
-  font-size: 21px;
-  color: var(--dark);
-}
-
-.section-title p {
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.search {
-  width: 100%;
-  padding: 14px;
-  border: 1px solid var(--border);
-  border-radius: 13px;
-  background: white;
-  outline-color: var(--blue);
-  margin-bottom: 16px;
-}
-
-.categories {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
-
-.category {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 15px;
-  padding: 16px 10px;
-  text-align: center;
-}
-
-.category .icon {
-  font-size: 29px;
-}
-
-.category h3 {
-  font-size: 13px;
-  margin-top: 6px;
-}
-
-.category p {
-  color: var(--muted);
-  font-size: 11px;
-}
-
-.problem-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-}
-
-.problem {
-  background: white;
-  padding: 15px;
-  border-radius: 14px;
-  border: 1px solid var(--border);
-  text-align: left;
-  color: var(--text);
-  display: flex;
-  align-items: center;
-  gap: 11px;
-}
-
-.problem .icon {
-  font-size: 27px;
-}
-
-.problem strong {
-  display: block;
-  font-size: 14px;
-}
-
-.problem small {
-  color: var(--muted);
-  font-size: 11px;
-}
-
-.card {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  padding: 20px;
-  margin-top: 20px;
-}
-
-.card h2 {
-  font-size: 20px;
-  color: var(--dark);
-}
-
-.card p {
-  color: var(--muted);
-  font-size: 14px;
-  margin-top: 6px;
-}
-
-.chatbox {
-  background: #f5f8ff;
-  border-radius: 12px;
-  padding: 15px;
-  margin-top: 15px;
-  min-height: 90px;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-}
-
-.chat-form {
-  display: flex;
-  gap: 8px;
-  margin-top: 12px;
-}
-
-.chat-form input {
-  min-width: 0;
-  flex: 1;
-  padding: 12px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-}
-
-.chat-form button {
-  margin: 0;
-}
-
-.tip {
-  border-left: 4px solid var(--blue);
-  padding: 12px;
-  background: var(--light);
-  border-radius: 8px;
-  margin-top: 12px;
-  font-size: 14px;
-}
-
-footer {
-  text-align: center;
-  color: var(--muted);
-  padding: 25px 10px;
-  font-size: 12px;
-}
-
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: white;
-  border-top: 1px solid var(--border);
-  display: flex;
-  justify-content: space-around;
-  padding: 10px 2px;
-  z-index: 20;
-}
-
-.bottom-nav button {
-  border: 0;
-  background: none;
-  color: var(--muted);
-  font-size: 11px;
-  padding: 5px;
-}
-
-.bottom-nav span {
-  display: block;
-  font-size: 20px;
-}
-
-.bottom-nav button.active {
-  color: var(--blue);
-  font-weight: bold;
-}
-
-.hidden {
-  display: none !important;
-}
-
-.notice {
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 10px;
-}
-
-@media (min-width: 700px) {
-  .problem-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .hero {
-    padding: 40px;
-  }
-}
-
-@media (max-width: 380px) {
-  header {
-    padding: 12px;
-  }
-
-  .brand h1 {
-    font-size: 16px;
-  }
-
-  .categories {
-    gap: 6px;
-  }
-
-  .category {
-    padding: 12px 5px;
-  }
-
-  .hero {
-    padding: 20px 16px;
-  }
-
-  .robot {
-    font-size: 57px;
-  }
-}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f3f6fc;color:#17233d}
+header{background:#123b70;color:white;padding:18px;text-align:center}
+header h1{margin:0;font-size:23px}
+header p{margin:7px 0 0}
+.container{max-width:850px;margin:auto;padding:18px}
+.card{background:white;padding:20px;border-radius:15px;margin:15px 0;box-shadow:0 4px 15px #152b4c12}
+input,textarea,select{width:100%;padding:13px;margin:8px 0;border:1px solid #ccd5e2;border-radius:8px;font-size:15px}
+button{padding:12px 16px;border:0;border-radius:8px;background:#1769e0;color:white;cursor:pointer;font-size:15px;margin:4px}
+button:hover{background:#0c4eaf}
+.secondary{background:#e8efff;color:#174c99}
+.hidden{display:none!important}
+.hero{background:linear-gradient(135deg,#123b70,#168caa);color:white;padding:27px;border-radius:15px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.topic{background:#f0f5ff;border-radius:12px;padding:16px}
+.topic h3{margin-top:0}
+.tag{display:inline-block;background:#e0f4eb;color:#176b46;padding:5px 9px;border-radius:20px;font-size:12px}
+footer{text-align:center;color:#667085;padding:20px}
+#message{overflow-wrap:anywhere;color:#c0392b}
+nav{display:flex;flex-wrap:wrap;gap:5px;margin:15px 0}
+nav button{flex:1;min-width:100px}
+#chatAnswer{white-space:pre-wrap;line-height:1.6}
 </style>
 </head>
 
 <body>
 
 <header>
-  <div class="brand">
-    <div class="logo">🛡️</div>
-    <div>
-      <h1>School Safety</h1>
-      <p>Smart Student Protection</p>
-    </div>
-  </div>
-
-  <select id="language" aria-label="Choose language">
-    <option value="en">English</option>
-    <option value="ur">اردو</option>
-    <option value="sd">سنڌي</option>
-  </select>
+  <h1>🛡️ School Safety</h1>
+  <p>Student Protection & Awareness</p>
 </header>
 
-<main>
+<!-- REGISTER / LOGIN -->
+<section id="authScreen" class="container">
+  <div class="card" style="max-width:430px;margin:35px auto">
+    <h2 id="authTitle">📝 Create Account</h2>
+    <p>Welcome to School Safety!</p>
 
-<section id="homePage">
+    <form id="authForm">
+      <input id="fullName" type="text" placeholder="Full name"
+             autocomplete="name" required>
+
+      <input id="email" type="email" placeholder="Email address"
+             autocomplete="email" required>
+
+      <input id="password" type="password"
+             placeholder="Password (at least 6 characters)"
+             minlength="6" autocomplete="new-password" required>
+
+      <button id="submitBtn" type="submit" style="width:100%">
+        Register
+      </button>
+    </form>
+
+    <button id="toggleAuth" class="secondary" style="width:100%">
+      Already have an account? Login
+    </button>
+
+    <p id="message" role="status"></p>
+  </div>
+</section>
+
+<!-- SCHOOL SAFETY APP -->
+<main id="appScreen" class="container hidden">
 
   <div class="hero">
-    <div>
-      <span class="badge">🛡️ Your safety matters</span>
-      <h2 id="welcome">Stay Safe.<br>Learn Safety.</h2>
-      <p id="welcomeText">
-        Learn how to protect yourself and others at school.
-      </p>
-      <button class="primary" onclick="showPage('problemsPage')"
-        id="exploreBtn">Explore Safety →</button>
+    <span class="tag">STUDENT PROTECTION</span>
+    <h2 id="welcome">Welcome to School Safety!</h2>
+    <p>Your safety matters. Learn how to stay safe at school and online.</p>
+  </div>
+
+  <nav>
+    <button onclick="showPage('home')">🏠 Home</button>
+    <button onclick="showPage('topics')">📚 Safety Topics</button>
+    <button onclick="showPage('buddy')">🤖 Safety Buddy</button>
+    <button onclick="showPage('saved')">⭐ Saved Tips</button>
+    <button onclick="showPage('settings')">⚙️ Settings</button>
+  </nav>
+
+  <!-- HOME -->
+  <section id="home" class="page">
+    <div class="card">
+      <h2>Welcome to Student Protection</h2>
+      <p>Learn practical ways to protect yourself, support your friends,
+         and report unsafe situations to a trusted adult.</p>
+      <button onclick="showPage('topics')">Explore Safety Topics →</button>
     </div>
-    <div class="robot" aria-label="Safety robot">🤖</div>
-  </div>
 
-  <div class="section-title">
-    <div>
-      <h2 id="categoriesTitle">Safety Categories</h2>
-      <p id="categoriesSubtitle">Learn to recognize risks</p>
-    </div>
-  </div>
-
-  <div class="categories">
-    <button class="category" onclick="filterCategory('external')">
-      <div class="icon">🚨</div>
-      <h3 id="externalTitle">External Threats</h3>
-      <p id="externalCount">5 safety topics</p>
-    </button>
-
-    <button class="category" onclick="filterCategory('natural')">
-      <div class="icon">🌪️</div>
-      <h3 id="naturalTitle">Natural Threats</h3>
-      <p id="naturalCount">6 safety topics</p>
-    </button>
-
-    <button class="category" onclick="filterCategory('medical')">
-      <div class="icon">🏥</div>
-      <h3 id="medicalTitle">Medical Conditions</h3>
-      <p id="medicalCount">10+ safety topics</p>
-    </button>
-  </div>
-
-  <div class="section-title">
-    <div>
-      <h2 id="popularTitle">Important Safety Topics</h2>
-      <p id="popularSubtitle">Tap a topic to learn what to do</p>
-    </div>
-  </div>
-
-  <div id="featuredProblems" class="problem-grid"></div>
-
-  <section class="card">
-    <h2>🆘 <span id="emergencyTitle">Emergency Help</span></h2>
-    <p id="emergencyText">
-      If you are in immediate danger, tell a teacher or trusted adult
-      and contact local emergency services.
-    </p>
-    <div class="tip" id="emergencyTip">
-      Stay calm, move to safety if possible, and follow your school's
-      emergency plan.
+    <h2>Safety Categories</h2>
+    <div class="grid">
+      <div class="topic">
+        <h3>🏫 School Safety</h3>
+        <p>Stay safe in classrooms, corridors and playgrounds.</p>
+      </div>
+      <div class="topic">
+        <h3>🤝 Bullying Prevention</h3>
+        <p>Recognise bullying and learn how to get help.</p>
+      </div>
+      <div class="topic">
+        <h3>🌐 Online Safety</h3>
+        <p>Protect your privacy and personal information online.</p>
+      </div>
+      <div class="topic">
+        <h3>🚨 Emergency Safety</h3>
+        <p>Know what to do during an emergency.</p>
+      </div>
     </div>
   </section>
 
-</section>
-
-<section id="problemsPage" class="hidden">
-  <div class="section-title">
-    <div>
-      <h2 id="allProblemsTitle">Safety Problems</h2>
-      <p id="allProblemsSubtitle">Find safety advice for each topic</p>
+  <!-- TOPICS -->
+  <section id="topics" class="page hidden">
+    <div class="card">
+      <h2>📚 Safety Topics</h2>
+      <input id="topicSearch" placeholder="Search safety topics..."
+             oninput="filterTopics()">
+      <div id="topicList" class="grid"></div>
     </div>
-  </div>
+  </section>
 
-  <input class="search" id="searchInput"
-    placeholder="🔍 Search safety problems..."
-    oninput="renderProblems()">
-
-  <div id="problemList" class="problem-grid"></div>
-  <p id="noResults" class="notice hidden">No matching problems found.</p>
-</section>
-
-<section id="assistantPage" class="hidden">
-  <div class="card">
-    <div style="font-size:52px;text-align:center">🤖</div>
-    <h2 style="text-align:center">Safety Buddy AI</h2>
-    <p style="text-align:center" id="assistantIntro">
-      Ask a school safety question. Choose English, Urdu or Sindhi above.
-    </p>
-
-    <div class="chatbox" id="chatOutput" aria-live="polite">🤖 Hello! I am Safety Buddy.
-
-Ask me about fire, earthquakes, injuries, bullying or other school safety topics.
-
-Note: This first version uses built-in safety answers. It is not connected to a live AI service yet.</div>
-
-    <form class="chat-form" id="chatForm">
-      <input id="questionInput" autocomplete="off"
-        placeholder="Ask a safety question..." required>
-      <button class="secondary" type="submit" id="sendBtn">Send</button>
-    </form>
-
-    <p class="notice" id="assistantNotice">
-      For emergencies, contact a teacher or local emergency services.
-    </p>
-  </div>
-</section>
-
-<section id="savedPage" class="hidden">
-  <div class="section-title">
-    <div>
-      <h2 id="savedTitle">⭐ Saved Safety Tips</h2>
-      <p id="savedSubtitle">Your bookmarked safety instructions</p>
+  <!-- SAFETY BUDDY -->
+  <section id="buddy" class="page hidden">
+    <div class="card">
+      <h2>🤖 Safety Buddy</h2>
+      <p>Ask a safety question to see helpful guidance.</p>
+      <textarea id="question" rows="3"
+        placeholder="Example: What should I do if someone bullies me?"></textarea>
+      <button onclick="askBuddy()">Ask Safety Buddy</button>
+      <div class="topic" style="margin-top:15px">
+        <strong>Answer:</strong>
+        <p id="chatAnswer">Your safety matters. Ask a question to get started.</p>
+      </div>
+      <p><small>Safety Buddy provides general guidance, not a live emergency service.</small></p>
     </div>
-  </div>
-  <div id="savedList"></div>
-</section>
+  </section>
 
-<section id="settingsPage" class="hidden">
-  <div class="card">
-    <h2 id="settingsTitle">⚙️ Settings</h2>
-    <p id="settingsText">Customize your School Safety experience.</p>
-
-    <div class="tip">
-      🌐 <strong id="settingLanguageLabel">App Language</strong>
-      <p id="settingLanguageText">Choose English, Urdu or Sindhi from the top menu.</p>
+  <!-- SAVED TIPS -->
+  <section id="saved" class="page hidden">
+    <div class="card">
+      <h2>⭐ Saved Tips</h2>
+      <div id="savedList"></div>
     </div>
+  </section>
 
-    <div class="tip">
-      🛡️ <strong id="settingSafetyLabel">Safety Reminder</strong>
-      <p id="settingSafetyText">Always follow your teacher's instructions during an emergency.</p>
+  <!-- SETTINGS -->
+  <section id="settings" class="page hidden">
+    <div class="card">
+      <h2>⚙️ Settings</h2>
+      <p><strong>Account:</strong> <span id="userEmail"></span></p>
+      <label for="language">Choose language:</label>
+      <select id="language" onchange="changeLanguage()">
+        <option value="en">English</option>
+        <option value="ur">اردو</option>
+        <option value="sd">سنڌي</option>
+      </select>
+      <button onclick="logout()" style="background:#c0392b">
+        🚪 Logout
+      </button>
     </div>
+  </section>
 
-    <button class="secondary" onclick="clearSaved()" id="clearSavedBtn">
-      Clear Saved Tips
-    </button>
-
-    <p class="notice">School Safety • Student Protection Project</p>
-  </div>
-</section>
-
-<section id="detailPage" class="hidden">
-  <button class="secondary" onclick="showPage('problemsPage')"
-    id="backBtn">← Back to Problems</button>
-
-  <div class="card">
-    <div style="font-size:42px" id="detailIcon">🛡️</div>
-    <h2 id="detailTitle">Safety Topic</h2>
-    <p id="detailDescription"></p>
-
-    <h3 style="margin-top:20px" id="stepsTitle">What should you do?</h3>
-    <div id="detailSteps"></div>
-
-    <button class="secondary" id="saveBtn" onclick="toggleSave()">
-      ⭐ Save Safety Tip
-    </button>
-  </div>
-</section>
-
-<footer>
-  <p>🛡️ School Safety | Stay alert, stay safe.</p>
-  <p>Educational project. Always follow official emergency instructions.</p>
-</footer>
-
+  <footer>School Safety | Student Protection ❤️</footer>
 </main>
 
-<nav class="bottom-nav" aria-label="Main navigation">
-  <button class="active" data-page="homePage" onclick="showPage('homePage')">
-    <span>🏠</span><b id="navHome">Home</b>
-  </button>
-  <button data-page="problemsPage" onclick="showPage('problemsPage')">
-    <span>🚨</span><b id="navProblems">Safety</b>
-  </button>
-  <button data-page="assistantPage" onclick="showPage('assistantPage')">
-    <span>🤖</span><b id="navAssistant">Assistant</b>
-  </button>
-  <button data-page="savedPage" onclick="showPage('savedPage')">
-    <span>⭐</span><b id="navSaved">Saved</b>
-  </button>
-  <button data-page="settingsPage" onclick="showPage('settingsPage')">
-    <span>⚙️</span><b id="navSettings">Settings</b>
-  </button>
-</nav>
+<script type="module">
+import { initializeApp } from
+  "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
 
-<script>
-const problems = [
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+  onAuthStateChanged,
+  signOut
+} from
+  "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDFb_QOeLL_7IsvSEum4fchb8xdub1al_g",
+  authDomain: "school-safety-app-e387e.firebaseapp.com",
+  projectId: "school-safety-app-e387e",
+  storageBucket: "school-safety-app-e387e.firebasestorage.app",
+  messagingSenderId: "528794286660",
+  appId: "1:528794286660:web:c70c1403aed13eda6a9a11",
+  measurementId: "G-3EEEWP9R3D"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+const $ = id => document.getElementById(id);
+
+let isRegister = true;
+let currentUser = null;
+
+const topics = [
   {
-    id:"fire", name:"Fire", icon:"🔥", category:"external",
-    description:"A fire can spread quickly and produce dangerous smoke.",
-    steps:[
-      "Alert your teacher and activate the school alarm if safe.",
-      "Leave by the nearest safe, marked exit. Do not use elevators.",
-      "Stay low if there is smoke. Never re-enter the building.",
-      "Go to the assembly point and follow emergency responders."
-    ],
-    keywords:["fire","flame","burning","aag","آگ","باهه"]
+    title:"Bullying Prevention",
+    icon:"🤝",
+    description:"Recognise bullying, stay calm and seek help.",
+    tip:"Tell a trusted teacher or adult. Save relevant evidence of cyberbullying. Do not retaliate or put yourself in danger."
   },
   {
-    id:"intruder", name:"Intruder", icon:"🚨", category:"external",
-    description:"An unauthorized or dangerous person is inside school.",
-    steps:[
-      "Tell a teacher or school security if you can do so safely.",
-      "Follow the school's lockdown or evacuation instructions.",
-      "Stay out of sight and away from danger. Do not confront the person.",
-      "Contact emergency services when it is safe to do so."
-    ],
-    keywords:["intruder","stranger","unknown person","اجنبی","اجنبی شخص","اڻڄاتل ماڻهو"]
+    title:"Online Safety",
+    icon:"🌐",
+    description:"Protect your accounts and personal information.",
+    tip:"Use strong, unique passwords. Never share passwords, verification codes, your home address or live location with strangers."
   },
   {
-    id:"clash", name:"Fight or Clash", icon:"🤝", category:"external",
-    description:"A fight can cause serious injuries.",
-    steps:[
-      "Keep a safe distance and do not join the fight.",
-      "Tell a teacher or school staff member immediately.",
-      "Do not try to physically separate people if it puts you in danger.",
-      "Get medical help if anyone is injured."
-    ],
-    keywords:["fight","clash","bully","bullying","لڑائی","جھگڑا","جهيڙو"]
+    title:"School Emergency",
+    icon:"🚨",
+    description:"Know how to respond to an emergency.",
+    tip:"Follow school emergency instructions, listen to staff and move to the designated safe area. Contact local emergency services when needed."
   },
   {
-    id:"shortcircuit", name:"Short Circuit", icon:"⚡", category:"external",
-    description:"Electrical faults can cause fire or electric shock.",
-    steps:[
-      "Do not touch exposed wires, sparks or damaged equipment.",
-      "Tell a teacher or responsible adult immediately.",
-      "Move away if there are sparks, smoke or flames.",
-      "Never attempt electrical repairs yourself."
-    ],
-    keywords:["short circuit","electricity","electrical","شارٹ سرکٹ"]
+    title:"Personal Boundaries",
+    icon:"🛡️",
+    description:"Understand personal space and consent.",
+    tip:"You can say no to unwanted contact. Move to a safe place and tell a trusted adult if someone makes you uncomfortable."
   },
   {
-    id:"building", name:"Unsafe Building", icon:"🏚️", category:"external",
-    description:"Cracks, falling materials or structural damage may be dangerous.",
-    steps:[
-      "Stay away from damaged walls, ceilings and unsafe areas.",
-      "Tell a teacher or school management immediately.",
-      "Follow evacuation instructions if the building is declared unsafe.",
-      "Do not re-enter until authorized staff say it is safe."
-    ],
-    keywords:["unsafe building","building damage","crack","عمارت","عمارت ۾ ڏار"]
+    title:"Fire Safety",
+    icon:"🔥",
+    description:"Learn basic fire precautions.",
+    tip:"Raise the alarm, leave using the designated safe exit and never use an elevator during a fire. Do not return for belongings."
   },
   {
-    id:"hijack", name:"Hijacking or Hostage Threat", icon:"🛡️", category:"external",
-    description:"A violent or hostage-taking incident is an extreme emergency.",
-    steps:[
-      "Follow the school's emergency and lockdown instructions.",
-      "If danger is nearby, seek a secure place if you can do so safely.",
-      "Stay quiet and avoid confronting or provoking the dangerous person.",
-      "Contact emergency responders only when it is safe."
-    ],
-    keywords:["hijack","hijacking","hostage","terrorist","اغوا","یرغمال","اغوا ڪرڻ"]
+    title:"Road Safety",
+    icon:"🚦",
+    description:"Travel safely to and from school.",
+    tip:"Use designated crossings, follow traffic signals and stay alert around moving vehicles."
   },
   {
-    id:"earthquake", name:"Earthquake", icon:"🌍", category:"natural",
-    description:"Earthquakes can shake buildings and cause falling objects.",
-    steps:[
-      "Drop, cover and hold on under a sturdy desk or table.",
-      "Protect your head and neck; stay away from windows.",
-      "Do not run outside while shaking continues.",
-      "After shaking stops, follow your teacher to a safe assembly area."
-    ],
-    keywords:["earthquake","زلزلہ","زلزلو"]
+    title:"Mental Wellbeing",
+    icon:"💚",
+    description:"Ask for support when you feel overwhelmed.",
+    tip:"Talk to a trusted adult, school counsellor or healthcare professional if you feel unsafe, distressed or overwhelmed."
   },
   {
-    id:"flood", name:"Flood", icon:"🌊", category:"natural",
-    description:"Floodwater can hide hazards and move people unexpectedly.",
-    steps:[
-      "Stay away from floodwater and flooded electrical areas.",
-      "Follow teacher and emergency responder instructions.",
-      "Move to higher ground only when directed and the route is safe.",
-      "Never walk or swim through moving floodwater."
-    ],
-    keywords:["flood","سیلاب","ٻوڏ"]
-  },
-  {
-    id:"rain", name:"Heavy Rain", icon:"🌧️", category:"natural",
-    description:"Heavy rain can cause slippery paths, flooding and poor visibility.",
-    steps:[
-      "Stay indoors in a safe area when instructed.",
-      "Avoid drains, flooded paths and exposed electrical equipment.",
-      "Follow school announcements about dismissal or evacuation.",
-      "Do not leave school without an authorized safe plan."
-    ],
-    keywords:["rain","heavy rain","بارش","تيز مينهن"]
-  },
-  {
-    id:"storm", name:"Storm", icon:"🌪️", category:"natural",
-    description:"Strong winds can break branches, windows and outdoor structures.",
-    steps:[
-      "Move indoors and stay away from windows.",
-      "Do not shelter beneath trees or near loose outdoor objects.",
-      "Follow the school's weather emergency plan.",
-      "Wait for permission before going outside."
-    ],
-    keywords:["storm","wind","cyclone","طوفان","طوفان"]
-  },
-  {
-    id:"tree", name:"Falling Tree", icon:"🌳", category:"natural",
-    description:"A falling tree or branch can cause serious injury.",
-    steps:[
-      "Move away from the tree and its branches.",
-      "Do not stand beneath damaged trees during strong winds.",
-      "Warn others from a safe distance.",
-      "Tell school staff and seek help if anyone is hurt."
-    ],
-    keywords:["tree falling","falling tree","branch","درخت","وڻ ڪرڻ"]
-  },
-  {
-    id:"roof", name:"Roof Collapse", icon:"🏚️", category:"natural",
-    description:"A damaged or collapsing roof is a serious structural emergency.",
-    steps:[
-      "Leave the danger area if there is a safe exit.",
-      "Do not enter a damaged building or return for belongings.",
-      "Follow school staff and emergency responders.",
-      "Do not enter rubble to attempt a rescue yourself."
-    ],
-    keywords:["roof collapse","collapse","ceiling collapse","چھت گرنا","ڇت ڪرڻ"]
-  },
-  {
-    id:"blackout", name:"Blackout or Fainting", icon:"🩺", category:"medical",
-    description:"A student may faint or suddenly lose consciousness.",
-    steps:[
-      "Tell a teacher and call for medical help immediately.",
-      "Check whether the person responds and is breathing normally.",
-      "If they are not breathing normally, have a trained person start CPR and get an AED.",
-      "Do not give food or drink to an unconscious person."
-    ],
-    keywords:["blackout","faint","fainting","unconscious","بے ہوش","بيهوش"]
-  },
-  {
-    id:"heatstroke", name:"Heat Stroke", icon:"☀️", category:"medical",
-    description:"Heat stroke is a life-threatening emergency caused by overheating.",
-    steps:[
-      "Call emergency medical help immediately.",
-      "Move the person to a cooler place and remove excess outer clothing.",
-      "Cool them rapidly with cool water and wet cloths while help is coming.",
-      "Do not give drinks to a confused or unconscious person."
-    ],
-    keywords:["heat stroke","heatstroke","overheating","گرمی","لُو لڳڻ"]
-  },
-  {
-    id:"cough", name:"Cough or Breathing Trouble", icon:"😷", category:"medical",
-    description:"A cough may be mild, but severe breathing difficulty needs urgent help.",
-    steps:[
-      "Tell a teacher or school nurse if symptoms are concerning.",
-      "Move away from dust, smoke or other obvious irritants.",
-      "If breathing is difficult, lips turn blue or the person collapses, get emergency help.",
-      "Use prescribed medicine only as directed by the responsible adult or clinician."
-    ],
-    keywords:["cough","breathing","سانس","کھانسی","کنگهه"]
-  },
-  {
-    id:"injury", name:"Injury", icon:"🩹", category:"medical",
-    description:"An injury may need first aid and medical assessment.",
-    steps:[
-      "Tell a teacher or school nurse promptly.",
-      "Do not move someone who may have a serious head, neck or back injury unless danger requires it.",
-      "For severe pain, heavy bleeding or loss of consciousness, call emergency services.",
-      "Follow trained first-aid instructions."
-    ],
-    keywords:["injury","hurt","wound","چوٹ","زخم"]
-  },
-  {
-    id:"bleeding", name:"Bleeding", icon:"🩸", category:"medical",
-    description:"Heavy bleeding requires immediate first aid and emergency assistance.",
-    steps:[
-      "Tell a teacher and get emergency medical help for severe bleeding.",
-      "Apply firm, continuous pressure with clean cloth or gauze.",
-      "Do not repeatedly lift the cloth to check the wound.",
-      "If blood soaks through, add more cloth on top and keep pressing."
-    ],
-    keywords:["bleeding","blood","cut","خون","رت"]
-  },
-  {
-    id:"electricshock", name:"Electric Shock", icon:"⚡", category:"medical",
-    description:"Electric current can seriously injure or kill a person.",
-    steps:[
-      "Do not touch the person while they may still be in contact with electricity.",
-      "Get an adult to disconnect power only if safe, and call emergency services.",
-      "Stay away from exposed wires and wet electrical areas.",
-      "After power is safely disconnected, a trained person should check breathing and provide first aid."
-    ],
-    keywords:["electric shock","electrocution","shock","بجلی کا جھٹکا","بجلي جو جهٽڪو"]
-  },
-  {
-    id:"dehydration", name:"Dehydration", icon:"💧", category:"medical",
-    description:"Dehydration occurs when the body loses more fluid than it takes in.",
-    steps:[
-      "Tell a teacher if you feel dizzy, very weak or unwell.",
-      "If fully awake and able to swallow, take small sips of safe drinking water.",
-      "Rest in a cool place.",
-      "Confusion, collapse or inability to drink requires urgent medical help."
-    ],
-    keywords:["dehydration","thirst","پانی کی کمی","پاڻي جي کوٽ"]
-  },
-  {
-    id:"flu", name:"Flu or Infection", icon:"🤒", category:"medical",
-    description:"Respiratory infections can spread between students.",
-    steps:[
-      "Tell a teacher if you feel unwell.",
-      "Cover coughs and sneezes and wash hands regularly.",
-      "Avoid sharing drinking bottles or utensils.",
-      "Follow school health guidance about staying home when sick."
-    ],
-    keywords:["flu","fever","infection","بخار","زڪام"]
-  },
-  {
-    id:"pandemic", name:"Pandemic or Outbreak", icon:"🦠", category:"medical",
-    description:"An outbreak may require additional school health precautions.",
-    steps:[
-      "Follow current public health and school instructions.",
-      "Wash hands and improve ventilation when possible.",
-      "Use masks or other protective measures when advised.",
-      "Tell a trusted adult if you become sick."
-    ],
-    keywords:["pandemic","outbreak","virus","وبا","وبائي مرض"]
-  },
-  {
-    id:"stomach", name:"Stomach Ache", icon:"🤕", category:"medical",
-    description:"Stomach pain can have many causes and sometimes needs medical care.",
-    steps:[
-      "Tell a teacher, school nurse or trusted adult.",
-      "Rest and take small sips of water if you can swallow normally.",
-      "Do not take medicines without appropriate adult guidance.",
-      "Severe or worsening pain, fainting or blood in vomit or stool needs urgent medical attention."
-    ],
-    keywords:["stomach ache","stomach pain","پیٹ درد","پيٽ جو سور"]
-  },
-  {
-    id:"vomiting", name:"Vomiting", icon:"🤢", category:"medical",
-    description:"Vomiting can cause dehydration and may signal illness.",
-    steps:[
-      "Tell a teacher or school nurse.",
-      "Sit upright or lean forward to reduce choking risk.",
-      "If fully alert and able to swallow, take small sips of water.",
-      "Seek urgent help for blood in vomit, severe pain or signs of dehydration."
-    ],
-    keywords:["vomiting","vomit","sick","قے","الٽي"]
-  },
-  {
-    id:"diarrhea", name:"Diarrhea", icon:"💧", category:"medical",
-    description:"Diarrhea can lead to dehydration.",
-    steps:[
-      "Tell a teacher or trusted adult.",
-      "Drink safe fluids; oral rehydration solution may help when appropriate.",
-      "Wash hands with soap and water.",
-      "Seek medical care for blood in stool, severe weakness or signs of dehydration."
-    ],
-    keywords:["diarrhea","diarrhoea","loose motion","دست","دست"]
+    title:"Reporting Unsafe Behaviour",
+    icon:"📣",
+    description:"Learn how to report a safety concern.",
+    tip:"Tell a trusted teacher, school administrator or guardian. Explain what happened, where and when, and whether anyone is in immediate danger."
   }
 ];
 
 const translations = {
   en: {
-    welcome:"Stay Safe.<br>Learn Safety.",
-    welcomeText:"Learn how to protect yourself and others at school.",
-    exploreBtn:"Explore Safety →",
-    categoriesTitle:"Safety Categories",
-    categoriesSubtitle:"Learn to recognize risks",
-    externalTitle:"External Threats",
-    naturalTitle:"Natural Threats",
-    medicalTitle:"Medical Conditions",
-    popularTitle:"Important Safety Topics",
-    popularSubtitle:"Tap a topic to learn what to do",
-    emergencyTitle:"Emergency Help",
-    emergencyText:"If you are in immediate danger, tell a teacher or trusted adult and contact local emergency services.",
-    emergencyTip:"Stay calm, move to safety if possible, and follow your school's emergency plan.",
-    allProblemsTitle:"Safety Problems",
-    allProblemsSubtitle:"Find safety advice for each topic",
-    search:"🔍 Search safety problems...",
-    assistantIntro:"Ask a school safety question. Choose English, Urdu or Sindhi above.",
-    question:"Ask a safety question...",
-    send:"Send",
-    savedTitle:"⭐ Saved Safety Tips",
-    savedSubtitle:"Your bookmarked safety instructions",
-    settingsTitle:"⚙️ Settings",
-    settingsText:"Customize your School Safety experience.",
-    settingLanguageLabel:"App Language",
-    settingLanguageText:"Choose English, Urdu or Sindhi from the top menu.",
-    settingSafetyLabel:"Safety Reminder",
-    settingSafetyText:"Always follow your teacher's instructions during an emergency.",
-    clearSavedBtn:"Clear Saved Tips",
-    backBtn:"← Back to Problems",
-    stepsTitle:"What should you do?",
-    navHome:"Home",navProblems:"Safety",navAssistant:"Assistant",
-    navSaved:"Saved",navSettings:"Settings",
-    save:"⭐ Save Safety Tip",remove:"★ Remove Saved Tip",
-    noResults:"No matching problems found.",
-    savedEmpty:"No saved tips yet. Open a safety topic and tap Save Safety Tip.",
-    notUnderstood:"I couldn't match that question to a safety topic. Try asking about fire, earthquake, an intruder, injury or another listed problem. For a new or serious emergency, tell a teacher or contact emergency services.",
-    answerLabel:"Safety advice",
-    disclaimer:"For emergencies, contact a teacher or local emergency services.",
-    detailFallback:"Follow school safety procedures and ask a teacher or trained adult for help."
+    home:"🏠 Home",
+    topics:"📚 Safety Topics",
+    buddy:"🤖 Safety Buddy",
+    saved:"⭐ Saved Tips",
+    settings:"⚙️ Settings"
   },
   ur: {
-    welcome:"محفوظ رہیں۔<br>حفاظت سیکھیں۔",
-    welcomeText:"اسکول میں اپنی اور دوسروں کی حفاظت کرنا سیکھیں۔",
-    exploreBtn:"حفاظتی معلومات دیکھیں ←",
-    categoriesTitle:"حفاظتی اقسام",
-    categoriesSubtitle:"خطرات کو پہچاننا سیکھیں",
-    externalTitle:"بیرونی خطرات",
-    naturalTitle:"قدرتی خطرات",
-    medicalTitle:"طبی مسائل",
-    popularTitle:"اہم حفاظتی موضوعات",
-    popularSubtitle:"حل جاننے کے لیے کسی موضوع پر کلک کریں",
-    emergencyTitle:"ہنگامی مدد",
-    emergencyText:"اگر آپ فوری خطرے میں ہیں تو استاد یا قابلِ اعتماد بالغ کو بتائیں اور مقامی ایمرجنسی سروس سے رابطہ کریں۔",
-    emergencyTip:"پرسکون رہیں، ممکن ہو تو محفوظ جگہ جائیں اور اسکول کے ہنگامی منصوبے پر عمل کریں۔",
-    allProblemsTitle:"حفاظتی مسائل",
-    allProblemsSubtitle:"ہر مسئلے کے لیے حفاظتی ہدایات",
-    search:"🔍 حفاظتی مسئلہ تلاش کریں...",
-    assistantIntro:"اسکول کی حفاظت سے متعلق سوال پوچھیں۔ اوپر زبان منتخب کریں۔",
-    question:"اپنا سوال لکھیں...",
-    send:"بھیجیں",
-    savedTitle:"⭐ محفوظ حفاظتی ہدایات",
-    savedSubtitle:"آپ کی محفوظ کردہ ہدایات",
-    settingsTitle:"⚙️ ترتیبات",
-    settingsText:"اپنی ایپ کی ترتیبات تبدیل کریں۔",
-    settingLanguageLabel:"ایپ کی زبان",
-    settingLanguageText:"اوپر سے انگریزی، اردو یا سندھی منتخب کریں۔",
-    settingSafetyLabel:"حفاظتی یاد دہانی",
-    settingSafetyText:"ہنگامی صورتحال میں استاد کی ہدایات پر عمل کریں۔",
-    clearSavedBtn:"محفوظ ہدایات حذف کریں",
-    backBtn:"← مسائل پر واپس جائیں",
-    stepsTitle:"آپ کو کیا کرنا چاہیے؟",
-    navHome:"ہوم",navProblems:"حفاظت",navAssistant:"اسسٹنٹ",
-    navSaved:"محفوظ",navSettings:"ترتیبات",
-    save:"⭐ حفاظتی ہدایت محفوظ کریں",remove:"★ محفوظ ہدایت ہٹائیں",
-    noResults:"کوئی متعلقہ مسئلہ نہیں ملا۔",
-    savedEmpty:"ابھی کوئی ہدایت محفوظ نہیں۔",
-    notUnderstood:"میں اس سوال کو کسی درج شدہ حفاظتی مسئلے سے نہیں ملا سکا۔ آگ، زلزلے، چوٹ یا کسی دوسرے مسئلے کے بارے میں پوچھیں۔ ہنگامی حالت میں استاد یا ایمرجنسی سروس سے رابطہ کریں۔",
-    answerLabel:"حفاظتی ہدایات",
-    disclaimer:"ہنگامی حالت میں استاد یا مقامی ایمرجنسی سروس سے رابطہ کریں۔",
-    detailFallback:"اسکول کے حفاظتی اصولوں پر عمل کریں اور استاد سے مدد لیں۔"
+    home:"🏠 گھر",
+    topics:"📚 حفاظتی موضوعات",
+    buddy:"🤖 سیفٹی مددگار",
+    saved:"⭐ محفوظ مشورے",
+    settings:"⚙️ ترتیبات"
   },
   sd: {
-    welcome:"محفوظ رهو.<br>حفاظت سکو.",
-    welcomeText:"اسڪول ۾ پاڻ ۽ ٻين کي محفوظ رکڻ سکو.",
-    exploreBtn:"حفاظتي ڄاڻ ڏسو ←",
-    categoriesTitle:"حفاظتي قسم",
-    categoriesSubtitle:"خطرن کي سڃاڻڻ سکو",
-    externalTitle:"ٻاهريان خطرا",
-    naturalTitle:"قدرتي خطرا",
-    medicalTitle:"طبي مسئلا",
-    popularTitle:"اهم حفاظتي موضوع",
-    popularSubtitle:"حل ڄاڻڻ لاءِ ڪنهن موضوع تي ٽيپ ڪريو",
-    emergencyTitle:"هنگامي مدد",
-    emergencyText:"جيڪڏهن توهان فوري خطري ۾ آهيو ته استاد يا ڀروسي واري وڏي ماڻهو کي ٻڌايو ۽ مقامي ايمرجنسي سروس سان رابطو ڪريو.",
-    emergencyTip:"پرسڪون رهو، ممڪن هجي ته محفوظ هنڌ تي وڃو ۽ اسڪول جي هنگامي منصوبي تي عمل ڪريو.",
-    allProblemsTitle:"حفاظتي مسئلا",
-    allProblemsSubtitle:"هر مسئلي لاءِ حفاظتي هدايتون",
-    search:"🔍 حفاظتي مسئلو ڳوليو...",
-    assistantIntro:"اسڪول جي حفاظت بابت سوال پڇو. مٿي ٻولي چونڊيو.",
-    question:"پنهنجو سوال لکو...",
-    send:"موڪليو",
-    savedTitle:"⭐ محفوظ ڪيل حفاظتي هدايتون",
-    savedSubtitle:"توهان جون محفوظ ڪيل هدايتون",
-    settingsTitle:"⚙️ سيٽنگون",
-    settingsText:"پنهنجي ايپ جون سيٽنگون تبديل ڪريو.",
-    settingLanguageLabel:"ايپ جي ٻولي",
-    settingLanguageText:"مٿي انگريزي، اردو يا سنڌي چونڊيو.",
-    settingSafetyLabel:"حفاظتي ياد ڏيارڻي",
-    settingSafetyText:"هنگامي حالت ۾ هميشه استاد جي هدايتن تي عمل ڪريو.",
-    clearSavedBtn:"محفوظ هدايتون ختم ڪريو",
-    backBtn:"← مسئلن ڏانهن واپس",
-    stepsTitle:"توهان کي ڇا ڪرڻ گهرجي؟",
-    navHome:"گهر",navProblems:"حفاظت",navAssistant:"اسسٽنٽ",
-    navSaved:"محفوظ",navSettings:"سيٽنگون",
-    save:"⭐ هدايت محفوظ ڪريو",remove:"★ محفوظ هدايت هٽايو",
-    noResults:"ڪو به لاڳاپيل مسئلو نه مليو.",
-    savedEmpty:"اڃا ڪا هدايت محفوظ ناهي.",
-    notUnderstood:"مان هن سوال کي ڪنهن درج ٿيل حفاظتي مسئلي سان ملائي نه سگهيس. باهه، زلزلي يا زخمي ٿيڻ بابت پڇو. هنگامي حالت ۾ استاد يا ايمرجنسي سروس سان رابطو ڪريو.",
-    answerLabel:"حفاظتي هدايتون",
-    disclaimer:"هنگامي حالت ۾ استاد يا مقامي ايمرجنسي سروس سان رابطو ڪريو.",
-    detailFallback:"اسڪول جي حفاظتي اصولن تي عمل ڪريو ۽ استاد کان مدد وٺو."
+    home:"🏠 گهر",
+    topics:"📚 حفاظت جا موضوع",
+    buddy:"🤖 حفاظت مددگار",
+    saved:"⭐ محفوظ ڪيل صلاحون",
+    settings:"⚙️ سيٽنگون"
   }
 };
 
-const translationsForProblems = {
-  ur: {
-    fire:["آگ لگنا","آگ سے دھواں اور تیزی سے پھیلنے والے شعلے خطرناک ہو سکتے ہیں۔",[
-      "فوراً استاد کو بتائیں۔",
-      "محفوظ راستے سے عمارت سے باہر نکلیں، لفٹ استعمال نہ کریں۔",
-      "دھوئیں سے بچیں اور دوبارہ عمارت میں داخل نہ ہوں۔",
-      "محفوظ اجتماع کی جگہ پر جائیں اور ہنگامی عملے کی ہدایات پر عمل کریں۔"
-    ]],
-    intruder:["غیر متعلقہ شخص","اگر کوئی خطرناک یا غیر متعلقہ شخص اسکول میں داخل ہو جائے۔",[
-      "محفوظ ہو تو استاد یا سکیورٹی کو اطلاع دیں۔",
-      "اسکول کی لاک ڈاؤن یا انخلا کی ہدایات پر عمل کریں۔",
-      "خطرے سے دور رہیں اور اس شخص کا سامنا نہ کریں۔",
-      "محفوظ ہونے پر ایمرجنسی سروس سے رابطہ کریں۔"
-    ]],
-    earthquake:["زلزلہ","زلزلے کے دوران عمارت اور چیزیں ہل سکتی ہیں۔",[
-      "نیچے جھکیں، مضبوط میز کے نیچے پناہ لیں اور اسے پکڑیں۔",
-      "سر اور گردن کی حفاظت کریں اور کھڑکیوں سے دور رہیں۔",
-      "جھٹکے جاری ہوں تو باہر کی طرف نہ بھاگیں۔",
-      "جھٹکے رکنے پر استاد کی ہدایات پر عمل کریں۔"
-    ]],
-    flood:["سیلاب","سیلابی پانی خطرناک اور بجلی کے لیے جان لیوا ہو سکتا ہے۔",[
-      "سیلابی پانی سے دور رہیں۔",
-      "استاد اور امدادی کارکنوں کی ہدایات پر عمل کریں۔",
-      "محفوظ راستہ ہونے پر ہی بلند جگہ کی طرف جائیں۔",
-      "بہتے ہوئے پانی میں پیدل نہ چلیں اور نہ تیرنے کی کوشش کریں۔"
-    ]],
-    injury:["چوٹ","چوٹ کی صورت میں ابتدائی طبی امداد کی ضرورت ہو سکتی ہے۔",[
-      "فوراً استاد یا اسکول نرس کو بتائیں۔",
-      "سر، گردن یا کمر کی سنگین چوٹ کے شبہے میں شخص کو نہ ہلائیں۔",
-      "شدید چوٹ یا بے ہوشی کی صورت میں ہنگامی مدد لیں۔",
-      "تربیت یافتہ شخص کی ابتدائی طبی امداد پر عمل کریں۔"
-    ]],
-    bleeding:["خون بہنا","زیادہ خون بہنا فوری طبی امداد کا تقاضا کرتا ہے۔",[
-      "استاد کو بتائیں اور شدید خون بہنے پر ہنگامی مدد طلب کریں۔",
-      "صاف کپڑے یا گاز سے زخم پر مسلسل مضبوط دباؤ ڈالیں۔",
-      "بار بار کپڑا اٹھا کر زخم نہ دیکھیں۔",
-      "کپڑا بھیگ جائے تو دوسرا کپڑا اوپر رکھ کر دباؤ جاری رکھیں۔"
-    ]],
-    hijack:["یرغمال بنانا یا اغوا","یہ انتہائی خطرناک ہنگامی صورتحال ہے۔",[
-      "اسکول کی لاک ڈاؤن یا ہنگامی ہدایات پر عمل کریں۔",
-      "اگر خطرہ قریب ہو تو محفوظ جگہ پر جائیں، بشرطیکہ ایسا کرنا محفوظ ہو۔",
-      "خطرناک شخص کا سامنا نہ کریں اور خود کو خطرے میں نہ ڈالیں۔",
-      "محفوظ ہونے پر ہنگامی امداد سے رابطہ کریں۔"
-    ]],
-    heatstroke:["ہیٹ اسٹروک","شدید گرمی جسم کے درجہ حرارت کو خطرناک حد تک بڑھا سکتی ہے۔",[
-      "فوراً طبی ہنگامی مدد طلب کریں۔",
-      "شخص کو ٹھنڈی جگہ لے جائیں اور اضافی بیرونی کپڑے ہٹا دیں۔",
-      "مدد آنے تک ٹھنڈے پانی اور گیلے کپڑوں سے جسم ٹھنڈا کریں۔",
-      "بے ہوش یا الجھن کا شکار شخص کو پینے کے لیے کچھ نہ دیں۔"
-    ]]
-  },
-  sd: {
-    fire:["باهه لڳڻ","باهه ۽ دونهون خطرناڪ ٿي سگهن ٿا.",[
-      "فوراً استاد کي ٻڌايو.",
-      "محفوظ رستي سان ٻاهر نڪرو، لفٽ استعمال نه ڪريو.",
-      "دونهين کان پري رهو ۽ عمارت ۾ واپس نه وڃو.",
-      "محفوظ گڏ ٿيڻ واري هنڌ تي وڃو ۽ امدادي عملي جون هدايتون مڃيو."
-    ]],
-    intruder:["اڻڄاتل ماڻهو","جيڪڏهن ڪو خطرناڪ ماڻهو اسڪول ۾ داخل ٿئي.",[
-      "محفوظ هجي ته استاد يا سيڪيورٽي کي ٻڌايو.",
-      "اسڪول جي هنگامي هدايتن تي عمل ڪريو.",
-      "خطري کان پري رهو ۽ ان شخص سان مقابلو نه ڪريو.",
-      "محفوظ هجي ته ايمرجنسي سروس سان رابطو ڪريو."
-    ]],
-    earthquake:["زلزلو","زلزلي ۾ عمارت ۽ شيون لڏي سگهن ٿيون.",[
-      "هيٺ ويهو، مضبوط ميز هيٺ لڪو ۽ ان کي پڪڙي رکو.",
-      "مٿي ۽ ڳچيءَ کي بچايو ۽ دريءَ کان پري رهو.",
-      "ڌوڏا جاري هجن ته ٻاهر نه ڊوڙو.",
-      "ڌوڏا بند ٿيڻ کان پوءِ استاد جي هدايتن تي عمل ڪريو."
-    ]],
-    flood:["ٻوڏ","ٻوڏ جو پاڻي خطرناڪ ٿي سگهي ٿو.",[
-      "ٻوڏ جي پاڻي کان پري رهو.",
-      "استاد ۽ امدادي عملي جون هدايتون مڃيو.",
-      "رستو محفوظ هجي ته ئي اوچي هنڌ ڏانهن وڃو.",
-      "وهندڙ پاڻيءَ ۾ نه هلو ۽ نه ترڻ جي ڪوشش ڪريو."
-    ]],
-    injury:["زخمي ٿيڻ","زخم لاءِ پهرين امداد جي ضرورت ٿي سگهي ٿي.",[
-      "فوراً استاد يا اسڪول نرس کي ٻڌايو.",
-      "ڳچيءَ يا پٺيءَ جي سخت زخم واري شخص کي نه هلايو.",
-      "سخت زخم يا بيهوشي ۾ هنگامي مدد وٺو.",
-      "تربيت يافته شخص جي هدايتن تي عمل ڪريو."
-    ]],
-    bleeding:["رت وهڻ","گهڻو رت وهڻ هڪ هنگامي حالت آهي.",[
-      "استاد کي ٻڌايو ۽ هنگامي مدد گهرو.",
-      "صاف ڪپڙي سان زخم تي مسلسل دٻاءُ ڏيو.",
-      "ڪپڙو بار بار کڻي زخم نه ڏسو.",
-      "ڪپڙو ڀڄي وڃي ته مٿان ٻيو ڪپڙو رکي دٻاءُ جاري رکو."
-    ]],
-    hijack:["اغوا يا يرغمال بڻائڻ","هي انتهائي خطرناڪ هنگامي صورتحال آهي.",[
-      "اسڪول جي هنگامي هدايتن تي عمل ڪريو.",
-      "خطري کان پري محفوظ هنڌ تي رهو، جيڪڏهن ائين ڪرڻ محفوظ هجي.",
-      "خطرناڪ شخص سان مقابلو نه ڪريو.",
-      "محفوظ هجي ته هنگامي امداد سان رابطو ڪريو."
-    ]],
-    heatstroke:["هيٽ اسٽروڪ","سخت گرمي جسم لاءِ خطرناڪ ٿي سگهي ٿي.",[
-      "فوراً طبي هنگامي مدد گهرو.",
-      "ماڻهوءَ کي ٿڌي هنڌ تي وٺي وڃو.",
-      "مدد اچڻ تائين ٿڌي پاڻي ۽ آلي ڪپڙي سان جسم ٿڌو ڪريو.",
-      "بيهوش ماڻهوءَ کي پيئڻ لاءِ ڪجهه نه ڏيو."
-    ]]
-  }
-};
-
-let currentPage = "homePage";
-let currentProblem = null;
-let currentLanguage = localStorage.getItem("ss-language") || "en";
-let saved = JSON.parse(localStorage.getItem("ss-saved") || "[]");
-
-function t(key) {
-  return translations[currentLanguage][key] || translations.en[key] || key;
+function setMessage(text, error=true) {
+  $("message").textContent = text;
+  $("message").style.color = error ? "#c0392b" : "#16804a";
 }
 
-function getProblemText(problem) {
-  const translated = translationsForProblems[currentLanguage]?.[problem.id];
-  if (translated) {
-    return {
-      name: translated[0],
-      description: translated[1],
-      steps: translated[2]
+$("toggleAuth").addEventListener("click", () => {
+  isRegister = !isRegister;
+
+  $("authTitle").textContent =
+    isRegister ? "📝 Create Account" : "🔐 Login";
+
+  $("submitBtn").textContent = isRegister ? "Register" : "Login";
+
+  $("fullName").classList.toggle("hidden", !isRegister);
+  $("fullName").required = isRegister;
+  $("fullName").autocomplete = isRegister ? "name" : "off";
+
+  $("password").autocomplete =
+    isRegister ? "new-password" : "current-password";
+
+  $("toggleAuth").textContent = isRegister
+    ? "Already have an account? Login"
+    : "New user? Create an account";
+
+  setMessage("");
+});
+
+$("authForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  const email = $("email").value.trim();
+  const password = $("password").value;
+  const name = $("fullName").value.trim();
+
+  $("submitBtn").disabled = true;
+  setMessage("", false);
+
+  try {
+    if (isRegister) {
+      const result = await createUserWithEmailAndPassword(
+        auth, email, password
+      );
+
+      await updateProfile(result.user, {
+        displayName: name
+      });
+
+      setMessage("Account created successfully!", false);
+    } else {
+      await signInWithEmailAndPassword(auth, email, password);
+      setMessage("Login successful!", false);
+    }
+  } catch (error) {
+    const errors = {
+      "auth/email-already-in-use":
+        "This email is already registered. Please log in.",
+      "auth/invalid-email":
+        "Please enter a valid email address.",
+      "auth/weak-password":
+        "Password must contain at least 6 characters.",
+      "auth/invalid-credential":
+        "Incorrect email or password.",
+      "auth/user-not-found":
+        "Account not found. Please register first.",
+      "auth/wrong-password":
+        "Incorrect password.",
+      "auth/too-many-requests":
+        "Too many attempts. Please try again later.",
+      "auth/network-request-failed":
+        "Network error. Check your internet connection.",
+      "auth/operation-not-allowed":
+        "Enable Email/Password in Firebase Authentication settings."
     };
+
+    setMessage(errors[error.code] || error.message);
+  } finally {
+    $("submitBtn").disabled = false;
   }
-  return {
-    name: problem.name,
-    description: problem.description,
-    steps: problem.steps
-  };
-}
+});
 
-function showPage(page) {
-  currentPage = page;
+onAuthStateChanged(auth, user => {
+  currentUser = user;
 
-  document.querySelectorAll("main > section").forEach(section => {
-    section.classList.add("hidden");
-  });
+  $("authScreen").classList.toggle("hidden", !!user);
+  $("appScreen").classList.toggle("hidden", !user);
 
-  const target = document.getElementById(page);
-  if (target) target.classList.remove("hidden");
+  if (user) {
+    $("welcome").textContent =
+      "Welcome, " + (user.displayName || user.email) + "!";
 
-  document.querySelectorAll(".bottom-nav button").forEach(button => {
-    button.classList.toggle("active", button.dataset.page === page);
-  });
-
-  if (page === "problemsPage") renderProblems();
-  if (page === "savedPage") renderSaved();
-
-  window.scrollTo({top:0, behavior:"smooth"});
-}
-
-function filterCategory(category) {
-  showPage("problemsPage");
-  document.getElementById("searchInput").value = "";
-  renderProblems(category);
-}
-
-function problemCard(problem) {
-  const text = getProblemText(problem);
-
-  return `
-    <button class="problem" onclick="openProblem('${problem.id}')">
-      <span class="icon">${problem.icon}</span>
-      <span>
-        <strong>${text.name}</strong>
-        <small>${problem.category === "external" ? t("externalTitle") :
-                 problem.category === "natural" ? t("naturalTitle") :
-                 t("medicalTitle")}</small>
-      </span>
-    </button>`;
-}
-
-function renderFeatured() {
-  const featured = ["fire","intruder","earthquake","flood","heatstroke","injury"];
-  document.getElementById("featuredProblems").innerHTML =
-    problems.filter(p => featured.includes(p.id)).map(problemCard).join("");
-}
-
-function renderProblems(category = "") {
-  const input = document.getElementById("searchInput");
-  const query = input.value.trim().toLowerCase();
-
-  const filtered = problems.filter(problem => {
-    const text = getProblemText(problem);
-    const matchesCategory = !category || problem.category === category;
-    const searchable = [
-      problem.name, problem.description, ...problem.keywords,
-      text.name, text.description
-    ].join(" ").toLowerCase();
-
-    return matchesCategory && searchable.includes(query);
-  });
-
-  document.getElementById("problemList").innerHTML = filtered.map(problemCard).join("");
-  document.getElementById("noResults").classList.toggle("hidden", filtered.length > 0);
-}
-
-function openProblem(id) {
-  const problem = problems.find(p => p.id === id);
-  if (!problem) return;
-
-  currentProblem = problem;
-  const text = getProblemText(problem);
-
-  showPage("detailPage");
-  document.getElementById("detailIcon").textContent = problem.icon;
-  document.getElementById("detailTitle").textContent = text.name;
-  document.getElementById("detailDescription").textContent = text.description;
-
-  document.getElementById("detailSteps").innerHTML =
-    text.steps.map((step,index) =>
-      `<div class="tip"><strong>${index+1}.</strong> ${step}</div>`
-    ).join("");
-
-  updateSaveButton();
-}
-
-function toggleSave() {
-  if (!currentProblem) return;
-
-  if (saved.includes(currentProblem.id)) {
-    saved = saved.filter(id => id !== currentProblem.id);
-  } else {
-    saved.push(currentProblem.id);
+    $("userEmail").textContent = user.email || "";
+    renderTopics();
+    renderSaved();
+    showPage("home");
   }
+});
 
-  localStorage.setItem("ss-saved", JSON.stringify(saved));
-  updateSaveButton();
+window.logout = async function() {
+  try {
+    await signOut(auth);
+  } catch (error) {
+    alert("Logout failed: " + error.message);
+  }
+};
+
+window.showPage = function(page) {
+  document.querySelectorAll(".page").forEach(section => {
+    section.classList.toggle("hidden", section.id !== page);
+  });
+
+  if (page === "saved") renderSaved();
+};
+
+function renderTopics(search="") {
+  const list = $("topicList");
+  list.replaceChildren();
+
+  topics.filter(topic =>
+    (topic.title + " " + topic.description)
+      .toLowerCase().includes(search.toLowerCase())
+  ).forEach(topic => {
+    const card = document.createElement("article");
+    card.className = "topic";
+
+    const title = document.createElement("h3");
+    title.textContent = topic.icon + " " + topic.title;
+
+    const description = document.createElement("p");
+    description.textContent = topic.description;
+
+    const details = document.createElement("p");
+    details.textContent = topic.tip;
+
+    const save = document.createElement("button");
+    save.textContent = "⭐ Save Tip";
+    save.addEventListener("click", () => saveTip(topic.title, topic.tip));
+
+    card.append(title, description, details, save);
+    list.appendChild(card);
+  });
 }
 
-function updateSaveButton() {
-  const isSaved = currentProblem && saved.includes(currentProblem.id);
-  document.getElementById("saveBtn").textContent =
-    isSaved ? t("remove") : t("save");
+window.filterTopics = function() {
+  renderTopics($("topicSearch").value);
+};
+
+function getSaved() {
+  if (!currentUser) return [];
+
+  try {
+    return JSON.parse(
+      localStorage.getItem("safetyTips_" + currentUser.uid) || "[]"
+    );
+  } catch {
+    return [];
+  }
 }
 
-function renderSaved() {
-  const list = document.getElementById("savedList");
-  const items = problems.filter(p => saved.includes(p.id));
+function saveTip(title, tip) {
+  const saved = getSaved();
 
-  if (!items.length) {
-    list.innerHTML = `<div class="card">${t("savedEmpty")}</div>`;
+  if (saved.some(item => item.title === title)) {
+    alert("This tip is already saved.");
     return;
   }
 
-  list.innerHTML = items.map(problemCard).join("");
-}
+  saved.push({title, tip});
 
-function clearSaved() {
-  if (!confirm("Clear all saved safety tips?")) return;
-  saved = [];
-  localStorage.setItem("ss-saved", JSON.stringify(saved));
-  renderSaved();
-}
-
-function findAnswer(question) {
-  const q = question.toLowerCase();
-
-  const exact = problems.find(problem =>
-    problem.keywords.some(keyword => q.includes(keyword.toLowerCase()))
+  localStorage.setItem(
+    "safetyTips_" + currentUser.uid,
+    JSON.stringify(saved)
   );
 
-  if (!exact) return null;
-
-  const text = getProblemText(exact);
-
-  return {
-    problem: exact,
-    answer: `${text.name}\n\n${text.description}\n\n` +
-      text.steps.map((step,i) => `${i+1}. ${step}`).join("\n")
-  };
+  alert("Safety tip saved!");
 }
 
-document.getElementById("chatForm").addEventListener("submit", event => {
-  event.preventDefault();
+function renderSaved() {
+  const list = $("savedList");
+  list.replaceChildren();
 
-  const input = document.getElementById("questionInput");
-  const question = input.value.trim();
-  if (!question) return;
+  const saved = getSaved();
 
-  const result = findAnswer(question);
-  const answer = result ? result.answer : t("notUnderstood");
-
-  document.getElementById("chatOutput").textContent =
-    `👤 ${question}\n\n🤖 ${answer}`;
-
-  if (result) {
-    const openButton = document.createElement("button");
-    openButton.className = "secondary";
-    openButton.textContent = "📚 Open Safety Topic";
-    openButton.onclick = () => openProblem(result.problem.id);
-
-    const chat = document.getElementById("chatOutput");
-    const oldButton = document.getElementById("chatOpenButton");
-    if (oldButton) oldButton.remove();
-
-    openButton.id = "chatOpenButton";
-    chat.after(openButton);
+  if (!saved.length) {
+    list.textContent = "No saved tips yet. Explore Safety Topics to save one.";
+    return;
   }
 
-  input.value = "";
-});
+  saved.forEach((item, index) => {
+    const card = document.createElement("div");
+    card.className = "topic";
 
-function applyLanguage() {
-  const lang = currentLanguage;
-  document.documentElement.lang = lang;
-  document.documentElement.dir = lang === "ur" ? "rtl" : "ltr";
+    const title = document.createElement("h3");
+    title.textContent = "⭐ " + item.title;
 
-  document.getElementById("language").value = lang;
+    const tip = document.createElement("p");
+    tip.textContent = item.tip;
 
-  const keys = [
-    "welcome","welcomeText","exploreBtn","categoriesTitle",
-    "categoriesSubtitle","externalTitle","naturalTitle","medicalTitle",
-    "popularTitle","popularSubtitle","emergencyTitle","emergencyText",
-    "emergencyTip","allProblemsTitle","allProblemsSubtitle",
-    "assistantIntro","send","savedTitle","savedSubtitle",
-    "settingsTitle","settingsText","settingLanguageLabel",
-    "settingLanguageText","settingSafetyLabel","settingSafetyText",
-    "clearSavedBtn","backBtn","stepsTitle","navHome","navProblems",
-    "navAssistant","navSaved","navSettings"
-  ];
+    const remove = document.createElement("button");
+    remove.textContent = "Remove";
+    remove.className = "secondary";
 
-  keys.forEach(key => {
-    const element = document.getElementById(key);
-    if (element) element.innerHTML = t(key);
+    remove.addEventListener("click", () => {
+      const current = getSaved();
+      current.splice(index, 1);
+
+      localStorage.setItem(
+        "safetyTips_" + currentUser.uid,
+        JSON.stringify(current)
+      );
+
+      renderSaved();
+    });
+
+    card.append(title, tip, remove);
+    list.appendChild(card);
   });
-
-  document.getElementById("searchInput").placeholder = t("search");
-  document.getElementById("questionInput").placeholder = t("question");
-
-  renderFeatured();
-  renderProblems();
-  renderSaved();
-
-  if (currentProblem) openProblem(currentProblem.id);
 }
 
-document.getElementById("language").addEventListener("change", event => {
-  currentLanguage = event.target.value;
-  localStorage.setItem("ss-language", currentLanguage);
-  applyLanguage();
-});
+window.askBuddy = function() {
+  const question = $("question").value.trim().toLowerCase();
 
-applyLanguage();
-showPage("homePage");
+  if (!question) {
+    $("chatAnswer").textContent = "Please enter a question first.";
+    return;
+  }
+
+  let answer =
+    "Please speak with a trusted teacher, parent or guardian who can help you stay safe. If anyone is in immediate danger, move to safety and contact local emergency services.";
+
+  if (question.includes("bully") || question.includes("bullying")) {
+    answer = "Stay calm, move to a safe place and tell a trusted teacher or adult. Do not retaliate. If bullying happens online, keep relevant evidence and report it.";
+  } else if (question.includes("password") || question.includes("hack") || question.includes("online")) {
+    answer = "Use a strong, unique password. Never share verification codes or passwords. Avoid suspicious links and report online threats to a trusted adult.";
+  } else if (question.includes("fire")) {
+    answer = "Raise the alarm, leave by the designated safe exit and follow school emergency instructions. Never use an elevator during a fire.";
+  } else if (question.includes("emergency") || question.includes("danger")) {
+    answer = "Move away from danger if possible, alert a trusted adult and contact local emergency services if anyone is in immediate danger.";
+  } else if (question.includes("sad") || question.includes("stress") || question.includes("scared")) {
+    answer = "You deserve support. Talk to a trusted adult, teacher or school counsellor. If you feel unsafe, go to a safe place and ask for help.";
+  } else if (question.includes("report") || question.includes("teacher")) {
+    answer = "Tell a trusted teacher, school administrator or guardian what happened. Explain where and when it happened and whether anyone is in immediate danger.";
+  }
+
+  $("chatAnswer").textContent = answer;
+};
+
+window.changeLanguage = function() {
+  const language = $("language").value;
+  const labels = translations[language];
+
+  const buttons = document.querySelectorAll("nav button");
+  buttons[0].textContent = labels.home;
+  buttons[1].textContent = labels.topics;
+  buttons[2].textContent = labels.buddy;
+  buttons[3].textContent = labels.saved;
+  buttons[4].textContent = labels.settings;
+
+  document.documentElement.lang = language;
+};
 </script>
 
 </body>
