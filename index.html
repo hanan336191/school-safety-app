@@ -39,6 +39,111 @@ button {
   cursor: pointer;
 }
 
+/* REGISTER / LOGIN - SAME ORIGINAL BLUE THEME */
+
+#authScreen {
+  min-height: 100vh;
+  padding: 25px 16px;
+  background: linear-gradient(130deg, #1555bd, #3188fa);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#authScreen.hidden {
+  display: none !important;
+}
+
+.auth-card {
+  background: white;
+  width: 100%;
+  max-width: 420px;
+  padding: 30px 25px;
+  border-radius: 24px;
+  box-shadow: 0 15px 45px #12346b30;
+  text-align: center;
+}
+
+.auth-logo {
+  width: 70px;
+  height: 70px;
+  background: var(--blue);
+  color: white;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  font-size: 36px;
+  margin: 0 auto 15px;
+}
+
+.auth-card h2 {
+  color: var(--dark);
+  font-size: 25px;
+  margin-bottom: 5px;
+}
+
+.auth-card .auth-description {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 0 0 18px;
+}
+
+.auth-card input {
+  width: 100%;
+  padding: 13px;
+  margin: 7px 0;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  outline-color: var(--blue);
+  background: white;
+}
+
+.auth-submit {
+  width: 100%;
+  padding: 13px;
+  margin-top: 12px;
+  border: 0;
+  border-radius: 11px;
+  background: var(--blue);
+  color: white;
+  font-weight: bold;
+}
+
+.auth-submit:disabled {
+  opacity: .65;
+  cursor: wait;
+}
+
+.auth-toggle {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--light);
+  color: var(--blue);
+  font-weight: bold;
+}
+
+.auth-message {
+  font-size: 13px;
+  margin-top: 12px;
+  overflow-wrap: anywhere;
+  color: #c0392b;
+}
+
+.auth-message.success {
+  color: #16834a;
+}
+
+.auth-footer {
+  margin-top: 16px;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* ORIGINAL APP CSS */
+
 header {
   background: white;
   padding: 15px 5%;
@@ -374,11 +479,79 @@ footer {
   .robot {
     font-size: 57px;
   }
+
+  .auth-card {
+    padding: 25px 18px;
+  }
 }
 </style>
 </head>
 
 <body>
+
+<!-- REGISTER / LOGIN SCREEN -->
+
+<section id="authScreen">
+  <div class="auth-card">
+
+    <div class="auth-logo">🛡️</div>
+
+    <h2 id="authTitle">Create Account</h2>
+
+    <p class="auth-description" id="authDescription">
+      School Safety | Smart Student Protection
+    </p>
+
+    <form id="authForm">
+
+      <input
+        type="text"
+        id="fullName"
+        placeholder="Full Name"
+        autocomplete="name"
+        maxlength="100"
+        required
+      >
+
+      <input
+        type="email"
+        id="authEmail"
+        placeholder="Email Address"
+        autocomplete="email"
+        required
+      >
+
+      <input
+        type="password"
+        id="authPassword"
+        placeholder="Password (minimum 6 characters)"
+        autocomplete="new-password"
+        minlength="6"
+        required
+      >
+
+      <button class="auth-submit" id="authSubmit" type="submit">
+        Register
+      </button>
+
+    </form>
+
+    <button class="auth-toggle" id="authToggle" type="button">
+      Already have an account? Login
+    </button>
+
+    <p id="authMessage" class="auth-message" role="status"></p>
+
+    <p class="auth-footer">
+      🛡️ Stay alert, stay safe.
+    </p>
+
+  </div>
+</section>
+
+<!-- ORIGINAL APP: VISIBLE AFTER LOGIN -->
+
+<div id="appShell" class="hidden">
 
 <header>
   <div class="brand">
@@ -534,6 +707,17 @@ Note: This first version uses built-in safety answers. It is not connected to a 
       Clear Saved Tips
     </button>
 
+    <!-- ADDED: ACCOUNT DETAILS AND LOGOUT -->
+
+    <div class="tip">
+      👤 <strong>Account</strong>
+      <p id="userEmail">Signed in</p>
+    </div>
+
+    <button class="secondary" id="logoutBtn" onclick="logout()">
+      🚪 Logout
+    </button>
+
     <p class="notice">School Safety • Student Protection Project</p>
   </div>
 </section>
@@ -580,6 +764,9 @@ Note: This first version uses built-in safety answers. It is not connected to a 
     <span>⚙️</span><b id="navSettings">Settings</b>
   </button>
 </nav>
+
+</div>
+<!-- END ORIGINAL APP SHELL -->
 
 <script>
 const problems = [
@@ -746,7 +933,7 @@ const problems = [
       "If breathing is difficult, lips turn blue or the person collapses, get emergency help.",
       "Use prescribed medicine only as directed by the responsible adult or clinician."
     ],
-    keywords:["cough","breathing","سانس","کھانسی","کنگهه"]
+    keywords:["cough","breathing","سانس","کھانسی","ڪنگهه"]
   },
   {
     id:"injury", name:"Injury", icon:"🩹", category:"medical",
@@ -970,7 +1157,7 @@ const translations = {
     savedEmpty:"اڃا ڪا هدايت محفوظ ناهي.",
     notUnderstood:"مان هن سوال کي ڪنهن درج ٿيل حفاظتي مسئلي سان ملائي نه سگهيس. باهه، زلزلي يا زخمي ٿيڻ بابت پڇو. هنگامي حالت ۾ استاد يا ايمرجنسي سروس سان رابطو ڪريو.",
     answerLabel:"حفاظتي هدايتون",
-    disclaimer:"هنگامي حالت ۾ استاد يا مقامي ايمرجنسي سروس سان رابطو ڪريو.",
+    disclaimer:"هنگامي حالت ۾ استاد يا مقامي ايمرجنسي سروس سان رابطو ڪريو۔",
     detailFallback:"اسڪول جي حفاظتي اصولن تي عمل ڪريو ۽ استاد کان مدد وٺو."
   }
 };
@@ -1080,7 +1267,9 @@ const translationsForProblems = {
 
 let currentPage = "homePage";
 let currentProblem = null;
+
 let currentLanguage = localStorage.getItem("ss-language") || "en";
+
 let saved = JSON.parse(localStorage.getItem("ss-saved") || "[]");
 
 function t(key) {
@@ -1089,6 +1278,7 @@ function t(key) {
 
 function getProblemText(problem) {
   const translated = translationsForProblems[currentLanguage]?.[problem.id];
+
   if (translated) {
     return {
       name: translated[0],
@@ -1096,6 +1286,7 @@ function getProblemText(problem) {
       steps: translated[2]
     };
   }
+
   return {
     name: problem.name,
     description: problem.description,
@@ -1145,7 +1336,10 @@ function problemCard(problem) {
 }
 
 function renderFeatured() {
-  const featured = ["fire","intruder","earthquake","flood","heatstroke","injury"];
+  const featured = [
+    "fire","intruder","earthquake","flood","heatstroke","injury"
+  ];
+
   document.getElementById("featuredProblems").innerHTML =
     problems.filter(p => featured.includes(p.id)).map(problemCard).join("");
 }
@@ -1156,17 +1350,26 @@ function renderProblems(category = "") {
 
   const filtered = problems.filter(problem => {
     const text = getProblemText(problem);
-    const matchesCategory = !category || problem.category === category;
+
+    const matchesCategory =
+      !category || problem.category === category;
+
     const searchable = [
-      problem.name, problem.description, ...problem.keywords,
-      text.name, text.description
+      problem.name,
+      problem.description,
+      ...problem.keywords,
+      text.name,
+      text.description
     ].join(" ").toLowerCase();
 
     return matchesCategory && searchable.includes(query);
   });
 
-  document.getElementById("problemList").innerHTML = filtered.map(problemCard).join("");
-  document.getElementById("noResults").classList.toggle("hidden", filtered.length > 0);
+  document.getElementById("problemList").innerHTML =
+    filtered.map(problemCard).join("");
+
+  document.getElementById("noResults")
+    .classList.toggle("hidden", filtered.length > 0);
 }
 
 function openProblem(id) {
@@ -1174,12 +1377,15 @@ function openProblem(id) {
   if (!problem) return;
 
   currentProblem = problem;
+
   const text = getProblemText(problem);
 
   showPage("detailPage");
+
   document.getElementById("detailIcon").textContent = problem.icon;
   document.getElementById("detailTitle").textContent = text.name;
-  document.getElementById("detailDescription").textContent = text.description;
+  document.getElementById("detailDescription").textContent =
+    text.description;
 
   document.getElementById("detailSteps").innerHTML =
     text.steps.map((step,index) =>
@@ -1199,21 +1405,26 @@ function toggleSave() {
   }
 
   localStorage.setItem("ss-saved", JSON.stringify(saved));
+
   updateSaveButton();
 }
 
 function updateSaveButton() {
-  const isSaved = currentProblem && saved.includes(currentProblem.id);
+  const isSaved =
+    currentProblem && saved.includes(currentProblem.id);
+
   document.getElementById("saveBtn").textContent =
     isSaved ? t("remove") : t("save");
 }
 
 function renderSaved() {
   const list = document.getElementById("savedList");
+
   const items = problems.filter(p => saved.includes(p.id));
 
   if (!items.length) {
-    list.innerHTML = `<div class="card">${t("savedEmpty")}</div>`;
+    list.innerHTML =
+      `<div class="card">${t("savedEmpty")}</div>`;
     return;
   }
 
@@ -1222,8 +1433,11 @@ function renderSaved() {
 
 function clearSaved() {
   if (!confirm("Clear all saved safety tips?")) return;
+
   saved = [];
+
   localStorage.setItem("ss-saved", JSON.stringify(saved));
+
   renderSaved();
 }
 
@@ -1231,7 +1445,9 @@ function findAnswer(question) {
   const q = question.toLowerCase();
 
   const exact = problems.find(problem =>
-    problem.keywords.some(keyword => q.includes(keyword.toLowerCase()))
+    problem.keywords.some(keyword =>
+      q.includes(keyword.toLowerCase())
+    )
   );
 
   if (!exact) return null;
@@ -1250,26 +1466,31 @@ document.getElementById("chatForm").addEventListener("submit", event => {
 
   const input = document.getElementById("questionInput");
   const question = input.value.trim();
+
   if (!question) return;
 
   const result = findAnswer(question);
+
   const answer = result ? result.answer : t("notUnderstood");
 
   document.getElementById("chatOutput").textContent =
     `👤 ${question}\n\n🤖 ${answer}`;
 
+  const oldButton = document.getElementById("chatOpenButton");
+
+  if (oldButton) oldButton.remove();
+
   if (result) {
     const openButton = document.createElement("button");
+
     openButton.className = "secondary";
     openButton.textContent = "📚 Open Safety Topic";
+
     openButton.onclick = () => openProblem(result.problem.id);
 
-    const chat = document.getElementById("chatOutput");
-    const oldButton = document.getElementById("chatOpenButton");
-    if (oldButton) oldButton.remove();
-
     openButton.id = "chatOpenButton";
-    chat.after(openButton);
+
+    document.getElementById("chatOutput").after(openButton);
   }
 
   input.value = "";
@@ -1277,7 +1498,9 @@ document.getElementById("chatForm").addEventListener("submit", event => {
 
 function applyLanguage() {
   const lang = currentLanguage;
+
   document.documentElement.lang = lang;
+
   document.documentElement.dir = lang === "ur" ? "rtl" : "ltr";
 
   document.getElementById("language").value = lang;
@@ -1296,27 +1519,337 @@ function applyLanguage() {
 
   keys.forEach(key => {
     const element = document.getElementById(key);
+
     if (element) element.innerHTML = t(key);
   });
 
   document.getElementById("searchInput").placeholder = t("search");
+
   document.getElementById("questionInput").placeholder = t("question");
 
   renderFeatured();
   renderProblems();
   renderSaved();
 
-  if (currentProblem) openProblem(currentProblem.id);
+  if (currentProblem) {
+    openProblem(currentProblem.id);
+  }
 }
 
 document.getElementById("language").addEventListener("change", event => {
   currentLanguage = event.target.value;
+
   localStorage.setItem("ss-language", currentLanguage);
+
   applyLanguage();
 });
 
 applyLanguage();
 showPage("homePage");
+</script>
+
+<!-- FIREBASE REGISTER / LOGIN AUTHENTICATION -->
+
+<script type="module">
+
+import { initializeApp }
+  from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDFb_QOeLL_7IsvSEum4fchb8xdub1al_g",
+  authDomain: "school-safety-app-e387e.firebaseapp.com",
+  projectId: "school-safety-app-e387e",
+  storageBucket: "school-safety-app-e387e.firebasestorage.app",
+  messagingSenderId: "528794286660",
+  appId: "1:528794286660:web:c70c1403aed13eda6a9a11",
+  measurementId: "G-3EEEWP9R3D"
+};
+
+
+// Initialize Firebase
+
+const firebaseApp = initializeApp(firebaseConfig);
+
+const auth = getAuth(firebaseApp);
+
+
+// Authentication elements
+
+const authScreen = document.getElementById("authScreen");
+const appShell = document.getElementById("appShell");
+
+const authForm = document.getElementById("authForm");
+const authTitle = document.getElementById("authTitle");
+const authDescription = document.getElementById("authDescription");
+const fullNameInput = document.getElementById("fullName");
+const emailInput = document.getElementById("authEmail");
+const passwordInput = document.getElementById("authPassword");
+const authSubmit = document.getElementById("authSubmit");
+const authToggle = document.getElementById("authToggle");
+const authMessage = document.getElementById("authMessage");
+
+let isRegisterMode = true;
+
+
+// Switch between Register and Login
+
+authToggle.addEventListener("click", () => {
+  isRegisterMode = !isRegisterMode;
+
+  authTitle.textContent = isRegisterMode
+    ? "Create Account"
+    : "Welcome Back";
+
+  authDescription.textContent = isRegisterMode
+    ? "School Safety | Smart Student Protection"
+    : "Login to your School Safety account";
+
+  authSubmit.textContent = isRegisterMode
+    ? "Register"
+    : "Login";
+
+  authToggle.textContent = isRegisterMode
+    ? "Already have an account? Login"
+    : "New user? Create an account";
+
+  fullNameInput.classList.toggle("hidden", !isRegisterMode);
+
+  fullNameInput.required = isRegisterMode;
+
+  passwordInput.autocomplete = isRegisterMode
+    ? "new-password"
+    : "current-password";
+
+  passwordInput.value = "";
+
+  authMessage.textContent = "";
+
+  authMessage.classList.remove("success");
+});
+
+
+// Translate Firebase errors into readable messages
+
+function getAuthErrorMessage(error) {
+  const messages = {
+    "auth/email-already-in-use":
+      "This email is already registered. Please login.",
+
+    "auth/invalid-email":
+      "Please enter a valid email address.",
+
+    "auth/weak-password":
+      "Password is too weak. Use at least 6 characters.",
+
+    "auth/invalid-credential":
+      "Incorrect email or password. Please try again.",
+
+    "auth/user-not-found":
+      "No account found. Please register first.",
+
+    "auth/wrong-password":
+      "Incorrect password. Please try again.",
+
+    "auth/too-many-requests":
+      "Too many attempts. Please wait and try again.",
+
+    "auth/network-request-failed":
+      "Network error. Please check your internet connection.",
+
+    "auth/operation-not-allowed":
+      "Email/Password login is disabled in Firebase Console.",
+
+    "auth/invalid-api-key":
+      "Firebase API key is invalid. Check your Firebase configuration.",
+
+    "auth/app-not-authorized":
+      "This website is not authorized in your Firebase project.",
+
+    "auth/configuration-not-found":
+      "Firebase Authentication configuration was not found."
+  };
+
+  return messages[error.code] ||
+    "Something went wrong: " + error.message;
+}
+
+
+// Register and Login
+
+authForm.addEventListener("submit", async event => {
+  event.preventDefault();
+
+  const name = fullNameInput.value.trim();
+  const email = emailInput.value.trim();
+  const password = passwordInput.value;
+
+  if (isRegisterMode && !name) {
+    authMessage.textContent = "Please enter your full name.";
+    return;
+  }
+
+  if (password.length < 6) {
+    authMessage.textContent =
+      "Password must contain at least 6 characters.";
+    return;
+  }
+
+  authSubmit.disabled = true;
+  authToggle.disabled = true;
+
+  authMessage.classList.remove("success");
+
+  authMessage.textContent = isRegisterMode
+    ? "Creating your account..."
+    : "Logging in...";
+
+  try {
+    if (isRegisterMode) {
+
+      // Create a new Firebase Authentication account
+
+      const result = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      // Save the user's display name
+
+      await updateProfile(result.user, {
+        displayName: name
+      });
+
+      authMessage.classList.add("success");
+      authMessage.textContent = "Account created successfully!";
+
+    } else {
+
+      // Login with an existing account
+
+      await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      authMessage.classList.add("success");
+      authMessage.textContent = "Login successful!";
+    }
+
+  } catch (error) {
+
+    authMessage.classList.remove("success");
+
+    authMessage.textContent = getAuthErrorMessage(error);
+
+  } finally {
+
+    authSubmit.disabled = false;
+    authToggle.disabled = false;
+
+  }
+});
+
+
+// Monitor login state.
+// Logged-in users see the original app.
+// Logged-out users see Register/Login.
+
+onAuthStateChanged(auth, user => {
+
+  if (user) {
+
+    authScreen.classList.add("hidden");
+    appShell.classList.remove("hidden");
+
+    const userEmail = document.getElementById("userEmail");
+
+    if (userEmail) {
+      userEmail.textContent = user.email || "";
+    }
+
+    const welcome = document.getElementById("welcome");
+
+    if (welcome && user.displayName) {
+      welcome.innerHTML =
+        "Welcome, " + escapeWelcomeName(user.displayName) +
+        ".<br>Stay Safe.";
+    }
+
+    // Always open the original Home page after login
+
+    showPage("homePage");
+
+  } else {
+
+    appShell.classList.add("hidden");
+    authScreen.classList.remove("hidden");
+
+    authMessage.textContent = "";
+
+    emailInput.value = "";
+    passwordInput.value = "";
+
+  }
+
+});
+
+
+// Escape the user's name before putting it into HTML
+
+function escapeWelcomeName(name) {
+  return name.replace(/[&<>"']/g, character => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  })[character]);
+}
+
+
+// Logout function used by the Settings button
+
+window.logout = async function() {
+
+  const logoutButton = document.getElementById("logoutBtn");
+
+  if (logoutButton) {
+    logoutButton.disabled = true;
+    logoutButton.textContent = "Logging out...";
+  }
+
+  try {
+
+    await signOut(auth);
+
+    // onAuthStateChanged automatically shows the Login screen
+
+  } catch (error) {
+
+    alert("Logout failed: " + getAuthErrorMessage(error));
+
+  } finally {
+
+    if (logoutButton) {
+      logoutButton.disabled = false;
+      logoutButton.textContent = "🚪 Logout";
+    }
+
+  }
+};
+
 </script>
 
 </body>
