@@ -8,189 +8,164 @@
 <style>
 *{box-sizing:border-box}
 body{margin:0;font-family:Arial,sans-serif;background:#f3f6fc;color:#17233d}
-header{background:#123b70;color:white;padding:18px;text-align:center}
-header h1{margin:0;font-size:23px}
-header p{margin:7px 0 0}
+header{background:#123b70;color:white;padding:20px;text-align:center}
+header h1{margin:0}
 .container{max-width:850px;margin:auto;padding:18px}
-.card{background:white;padding:20px;border-radius:15px;margin:15px 0;box-shadow:0 4px 15px #152b4c12}
+.card{background:white;padding:22px;border-radius:15px;margin:15px 0;box-shadow:0 4px 15px #152b4c12}
 input,textarea,select{width:100%;padding:13px;margin:8px 0;border:1px solid #ccd5e2;border-radius:8px;font-size:15px}
 button{padding:12px 16px;border:0;border-radius:8px;background:#1769e0;color:white;cursor:pointer;font-size:15px;margin:4px}
 button:hover{background:#0c4eaf}
 .secondary{background:#e8efff;color:#174c99}
 .hidden{display:none!important}
 .hero{background:linear-gradient(135deg,#123b70,#168caa);color:white;padding:27px;border-radius:15px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
-.topic{background:#f0f5ff;border-radius:12px;padding:16px}
-.topic h3{margin-top:0}
-.tag{display:inline-block;background:#e0f4eb;color:#176b46;padding:5px 9px;border-radius:20px;font-size:12px}
-footer{text-align:center;color:#667085;padding:20px}
-#message{overflow-wrap:anywhere;color:#c0392b}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.topic{background:#f0f5ff;border-radius:12px;padding:17px}
 nav{display:flex;flex-wrap:wrap;gap:5px;margin:15px 0}
 nav button{flex:1;min-width:100px}
-#chatAnswer{white-space:pre-wrap;line-height:1.6}
+footer{text-align:center;color:#667085;padding:20px}
+#message{color:#c0392b;overflow-wrap:anywhere}
+.auth-card{max-width:430px;margin:35px auto}
+.page{margin-top:15px}
 </style>
 </head>
 
 <body>
 
-<header>
-  <h1>🛡️ School Safety</h1>
-  <p>Student Protection & Awareness</p>
-</header>
-
 <!-- REGISTER / LOGIN -->
 <section id="authScreen" class="container">
-  <div class="card" style="max-width:430px;margin:35px auto">
-    <h2 id="authTitle">📝 Create Account</h2>
-    <p>Welcome to School Safety!</p>
+<div class="card auth-card">
 
-    <form id="authForm">
-      <input id="fullName" type="text" placeholder="Full name"
-             autocomplete="name" required>
+<div style="text-align:center;font-size:45px">🛡️</div>
+<h2 id="authTitle">Create Account</h2>
+<p>Welcome to School Safety — Student Protection!</p>
 
-      <input id="email" type="email" placeholder="Email address"
-             autocomplete="email" required>
+<form id="authForm">
+<input id="fullName" type="text" placeholder="Full Name" required>
+<input id="email" type="email" placeholder="Email Address" required>
+<input id="password" type="password" placeholder="Password (minimum 6 characters)" minlength="6" required>
+<button id="submitBtn" type="submit" style="width:100%">Register</button>
+</form>
 
-      <input id="password" type="password"
-             placeholder="Password (at least 6 characters)"
-             minlength="6" autocomplete="new-password" required>
+<button id="toggleAuth" class="secondary" type="button" style="width:100%">
+Already have an account? Login
+</button>
 
-      <button id="submitBtn" type="submit" style="width:100%">
-        Register
-      </button>
-    </form>
+<p id="message" role="status"></p>
 
-    <button id="toggleAuth" class="secondary" style="width:100%">
-      Already have an account? Login
-    </button>
-
-    <p id="message" role="status"></p>
-  </div>
+</div>
 </section>
 
-<!-- SCHOOL SAFETY APP -->
-<main id="appScreen" class="container hidden">
+<!-- MAIN APPLICATION -->
+<div id="appScreen" class="hidden">
 
-  <div class="hero">
-    <span class="tag">STUDENT PROTECTION</span>
-    <h2 id="welcome">Welcome to School Safety!</h2>
-    <p>Your safety matters. Learn how to stay safe at school and online.</p>
-  </div>
+<header>
+<h1>🛡️ School Safety</h1>
+<p>Student Protection & Awareness</p>
+</header>
 
-  <nav>
-    <button onclick="showPage('home')">🏠 Home</button>
-    <button onclick="showPage('topics')">📚 Safety Topics</button>
-    <button onclick="showPage('buddy')">🤖 Safety Buddy</button>
-    <button onclick="showPage('saved')">⭐ Saved Tips</button>
-    <button onclick="showPage('settings')">⚙️ Settings</button>
-  </nav>
+<main class="container">
 
-  <!-- HOME -->
-  <section id="home" class="page">
-    <div class="card">
-      <h2>Welcome to Student Protection</h2>
-      <p>Learn practical ways to protect yourself, support your friends,
-         and report unsafe situations to a trusted adult.</p>
-      <button onclick="showPage('topics')">Explore Safety Topics →</button>
-    </div>
+<div class="hero">
+<h2 id="welcome">Welcome!</h2>
+<p>Your safety matters. Learn how to stay safe at school and online.</p>
+</div>
 
-    <h2>Safety Categories</h2>
-    <div class="grid">
-      <div class="topic">
-        <h3>🏫 School Safety</h3>
-        <p>Stay safe in classrooms, corridors and playgrounds.</p>
-      </div>
-      <div class="topic">
-        <h3>🤝 Bullying Prevention</h3>
-        <p>Recognise bullying and learn how to get help.</p>
-      </div>
-      <div class="topic">
-        <h3>🌐 Online Safety</h3>
-        <p>Protect your privacy and personal information online.</p>
-      </div>
-      <div class="topic">
-        <h3>🚨 Emergency Safety</h3>
-        <p>Know what to do during an emergency.</p>
-      </div>
-    </div>
-  </section>
+<nav>
+<button onclick="showPage('home')">🏠 Home</button>
+<button onclick="showPage('topics')">📚 Safety Topics</button>
+<button onclick="showPage('buddy')">🤖 Safety Buddy</button>
+<button onclick="showPage('saved')">⭐ Saved Tips</button>
+<button onclick="showPage('settings')">⚙️ Settings</button>
+</nav>
 
-  <!-- TOPICS -->
-  <section id="topics" class="page hidden">
-    <div class="card">
-      <h2>📚 Safety Topics</h2>
-      <input id="topicSearch" placeholder="Search safety topics..."
-             oninput="filterTopics()">
-      <div id="topicList" class="grid"></div>
-    </div>
-  </section>
+<!-- HOME -->
+<section id="home" class="page">
+<div class="card">
+<h2>Welcome to Student Protection</h2>
+<p>Learn how to protect yourself, support your friends and report unsafe situations to a trusted adult.</p>
+<button onclick="showPage('topics')">Explore Safety Topics →</button>
+</div>
 
-  <!-- SAFETY BUDDY -->
-  <section id="buddy" class="page hidden">
-    <div class="card">
-      <h2>🤖 Safety Buddy</h2>
-      <p>Ask a safety question to see helpful guidance.</p>
-      <textarea id="question" rows="3"
-        placeholder="Example: What should I do if someone bullies me?"></textarea>
-      <button onclick="askBuddy()">Ask Safety Buddy</button>
-      <div class="topic" style="margin-top:15px">
-        <strong>Answer:</strong>
-        <p id="chatAnswer">Your safety matters. Ask a question to get started.</p>
-      </div>
-      <p><small>Safety Buddy provides general guidance, not a live emergency service.</small></p>
-    </div>
-  </section>
+<h2>Safety Categories</h2>
 
-  <!-- SAVED TIPS -->
-  <section id="saved" class="page hidden">
-    <div class="card">
-      <h2>⭐ Saved Tips</h2>
-      <div id="savedList"></div>
-    </div>
-  </section>
+<div class="grid">
+<div class="topic"><h3>🏫 School Safety</h3><p>Stay safe in classrooms and playgrounds.</p></div>
+<div class="topic"><h3>🤝 Bullying Prevention</h3><p>Recognise bullying and learn how to get help.</p></div>
+<div class="topic"><h3>🌐 Online Safety</h3><p>Protect your privacy online.</p></div>
+<div class="topic"><h3>🚨 Emergency Safety</h3><p>Learn what to do during an emergency.</p></div>
+</div>
+</section>
 
-  <!-- SETTINGS -->
-  <section id="settings" class="page hidden">
-    <div class="card">
-      <h2>⚙️ Settings</h2>
-      <p><strong>Account:</strong> <span id="userEmail"></span></p>
-      <label for="language">Choose language:</label>
-      <select id="language" onchange="changeLanguage()">
-        <option value="en">English</option>
-        <option value="ur">اردو</option>
-        <option value="sd">سنڌي</option>
-      </select>
-      <button onclick="logout()" style="background:#c0392b">
-        🚪 Logout
-      </button>
-    </div>
-  </section>
+<!-- SAFETY TOPICS -->
+<section id="topics" class="page hidden">
+<div class="card">
+<h2>📚 Safety Topics</h2>
+<input id="topicSearch" placeholder="Search safety topics..." oninput="renderTopics()">
+<div id="topicList" class="grid"></div>
+</div>
+</section>
 
-  <footer>School Safety | Student Protection ❤️</footer>
+<!-- SAFETY BUDDY -->
+<section id="buddy" class="page hidden">
+<div class="card">
+<h2>🤖 Safety Buddy</h2>
+<p>Ask a question about student safety.</p>
+
+<textarea id="question" rows="3" placeholder="Ask your safety question..."></textarea>
+<button onclick="askBuddy()">Ask Question</button>
+
+<div class="topic">
+<strong>Answer:</strong>
+<p id="answer">Your Safety Buddy is ready to help!</p>
+</div>
+
+<small>This tool provides general guidance, not emergency services.</small>
+</div>
+</section>
+
+<!-- SAVED TIPS -->
+<section id="saved" class="page hidden">
+<div class="card">
+<h2>⭐ Saved Tips</h2>
+<div id="savedList"></div>
+</div>
+</section>
+
+<!-- SETTINGS -->
+<section id="settings" class="page hidden">
+<div class="card">
+<h2>⚙️ Settings</h2>
+<p>Logged in as: <strong id="userEmail"></strong></p>
+<button onclick="logout()" style="background:#c0392b">🚪 Logout</button>
+</div>
+</section>
+
+<footer>School Safety | Student Protection ❤️</footer>
+
 </main>
+</div>
 
 <script type="module">
-import { initializeApp } from
-  "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
 
 import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  updateProfile,
-  onAuthStateChanged,
-  signOut
-} from
-  "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
+ getAuth,
+ createUserWithEmailAndPassword,
+ signInWithEmailAndPassword,
+ updateProfile,
+ onAuthStateChanged,
+ signOut
+} from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
 
+/* FIREBASE CONFIGURATION */
 const firebaseConfig = {
-  apiKey: "AIzaSyDFb_QOeLL_7IsvSEum4fchb8xdub1al_g",
-  authDomain: "school-safety-app-e387e.firebaseapp.com",
-  projectId: "school-safety-app-e387e",
-  storageBucket: "school-safety-app-e387e.firebasestorage.app",
-  messagingSenderId: "528794286660",
-  appId: "1:528794286660:web:c70c1403aed13eda6a9a11",
-  measurementId: "G-3EEEWP9R3D"
+ apiKey: "AIzaSyDFb_QOeLL_7IsvSEum4fchb8xdub1al_g",
+ authDomain: "school-safety-app-e387e.firebaseapp.com",
+ projectId: "school-safety-app-e387e",
+ storageBucket: "school-safety-app-e387e.firebasestorage.app",
+ messagingSenderId: "528794286660",
+ appId: "1:528794286660:web:c70c1403aed13eda6a9a11",
+ measurementId: "G-3EEEWP9R3D"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -202,338 +177,322 @@ let isRegister = true;
 let currentUser = null;
 
 const topics = [
-  {
-    title:"Bullying Prevention",
-    icon:"🤝",
-    description:"Recognise bullying, stay calm and seek help.",
-    tip:"Tell a trusted teacher or adult. Save relevant evidence of cyberbullying. Do not retaliate or put yourself in danger."
-  },
-  {
-    title:"Online Safety",
-    icon:"🌐",
-    description:"Protect your accounts and personal information.",
-    tip:"Use strong, unique passwords. Never share passwords, verification codes, your home address or live location with strangers."
-  },
-  {
-    title:"School Emergency",
-    icon:"🚨",
-    description:"Know how to respond to an emergency.",
-    tip:"Follow school emergency instructions, listen to staff and move to the designated safe area. Contact local emergency services when needed."
-  },
-  {
-    title:"Personal Boundaries",
-    icon:"🛡️",
-    description:"Understand personal space and consent.",
-    tip:"You can say no to unwanted contact. Move to a safe place and tell a trusted adult if someone makes you uncomfortable."
-  },
-  {
-    title:"Fire Safety",
-    icon:"🔥",
-    description:"Learn basic fire precautions.",
-    tip:"Raise the alarm, leave using the designated safe exit and never use an elevator during a fire. Do not return for belongings."
-  },
-  {
-    title:"Road Safety",
-    icon:"🚦",
-    description:"Travel safely to and from school.",
-    tip:"Use designated crossings, follow traffic signals and stay alert around moving vehicles."
-  },
-  {
-    title:"Mental Wellbeing",
-    icon:"💚",
-    description:"Ask for support when you feel overwhelmed.",
-    tip:"Talk to a trusted adult, school counsellor or healthcare professional if you feel unsafe, distressed or overwhelmed."
-  },
-  {
-    title:"Reporting Unsafe Behaviour",
-    icon:"📣",
-    description:"Learn how to report a safety concern.",
-    tip:"Tell a trusted teacher, school administrator or guardian. Explain what happened, where and when, and whether anyone is in immediate danger."
-  }
+ {
+  title:"Bullying Prevention",
+  icon:"🤝",
+  description:"Tell a trusted teacher or adult if someone bullies you. Avoid retaliation and move somewhere safe."
+ },
+ {
+  title:"Online Safety",
+  icon:"🌐",
+  description:"Use strong passwords. Never share passwords, verification codes or personal information with strangers."
+ },
+ {
+  title:"School Emergency",
+  icon:"🚨",
+  description:"Follow school emergency instructions, listen to staff and move to the designated safe area."
+ },
+ {
+  title:"Personal Boundaries",
+  icon:"🛡️",
+  description:"You can say no to unwanted contact. Move to a safe place and tell a trusted adult."
+ },
+ {
+  title:"Fire Safety",
+  icon:"🔥",
+  description:"Leave using the designated safe exit, raise the alarm and follow emergency instructions."
+ },
+ {
+  title:"Road Safety",
+  icon:"🚦",
+  description:"Use designated crossings, follow traffic signals and stay alert around vehicles."
+ },
+ {
+  title:"Mental Wellbeing",
+  icon:"💚",
+  description:"Talk to a trusted adult or school counsellor if you feel overwhelmed or unsafe."
+ },
+ {
+  title:"Reporting Unsafe Behaviour",
+  icon:"📣",
+  description:"Tell a trusted teacher, school administrator or guardian what happened."
+ }
 ];
 
-const translations = {
-  en: {
-    home:"🏠 Home",
-    topics:"📚 Safety Topics",
-    buddy:"🤖 Safety Buddy",
-    saved:"⭐ Saved Tips",
-    settings:"⚙️ Settings"
-  },
-  ur: {
-    home:"🏠 گھر",
-    topics:"📚 حفاظتی موضوعات",
-    buddy:"🤖 سیفٹی مددگار",
-    saved:"⭐ محفوظ مشورے",
-    settings:"⚙️ ترتیبات"
-  },
-  sd: {
-    home:"🏠 گهر",
-    topics:"📚 حفاظت جا موضوع",
-    buddy:"🤖 حفاظت مددگار",
-    saved:"⭐ محفوظ ڪيل صلاحون",
-    settings:"⚙️ سيٽنگون"
-  }
-};
-
-function setMessage(text, error=true) {
-  $("message").textContent = text;
-  $("message").style.color = error ? "#c0392b" : "#16804a";
-}
-
+/* REGISTER / LOGIN SWITCH */
 $("toggleAuth").addEventListener("click", () => {
-  isRegister = !isRegister;
+ isRegister = !isRegister;
 
-  $("authTitle").textContent =
-    isRegister ? "📝 Create Account" : "🔐 Login";
+ $("authTitle").textContent =
+  isRegister ? "Create Account" : "Login to Your Account";
 
-  $("submitBtn").textContent = isRegister ? "Register" : "Login";
+ $("submitBtn").textContent =
+  isRegister ? "Register" : "Login";
 
-  $("fullName").classList.toggle("hidden", !isRegister);
-  $("fullName").required = isRegister;
-  $("fullName").autocomplete = isRegister ? "name" : "off";
+ $("fullName").classList.toggle("hidden", !isRegister);
+ $("fullName").required = isRegister;
 
-  $("password").autocomplete =
-    isRegister ? "new-password" : "current-password";
+ $("toggleAuth").textContent =
+  isRegister
+   ? "Already have an account? Login"
+   : "New user? Create an account";
 
-  $("toggleAuth").textContent = isRegister
-    ? "Already have an account? Login"
-    : "New user? Create an account";
-
-  setMessage("");
+ $("message").textContent = "";
 });
 
+/* FIREBASE REGISTER / LOGIN */
 $("authForm").addEventListener("submit", async event => {
-  event.preventDefault();
+ event.preventDefault();
 
-  const email = $("email").value.trim();
-  const password = $("password").value;
-  const name = $("fullName").value.trim();
+ const name = $("fullName").value.trim();
+ const email = $("email").value.trim();
+ const password = $("password").value;
 
-  $("submitBtn").disabled = true;
-  setMessage("", false);
+ $("submitBtn").disabled = true;
+ $("message").style.color = "#c0392b";
+ $("message").textContent = "Please wait...";
 
-  try {
-    if (isRegister) {
-      const result = await createUserWithEmailAndPassword(
-        auth, email, password
-      );
+ try {
+  if (isRegister) {
+   const result = await createUserWithEmailAndPassword(
+    auth,
+    email,
+    password
+   );
 
-      await updateProfile(result.user, {
-        displayName: name
-      });
+   await updateProfile(result.user, {
+    displayName: name
+   });
 
-      setMessage("Account created successfully!", false);
-    } else {
-      await signInWithEmailAndPassword(auth, email, password);
-      setMessage("Login successful!", false);
-    }
-  } catch (error) {
-    const errors = {
-      "auth/email-already-in-use":
-        "This email is already registered. Please log in.",
-      "auth/invalid-email":
-        "Please enter a valid email address.",
-      "auth/weak-password":
-        "Password must contain at least 6 characters.",
-      "auth/invalid-credential":
-        "Incorrect email or password.",
-      "auth/user-not-found":
-        "Account not found. Please register first.",
-      "auth/wrong-password":
-        "Incorrect password.",
-      "auth/too-many-requests":
-        "Too many attempts. Please try again later.",
-      "auth/network-request-failed":
-        "Network error. Check your internet connection.",
-      "auth/operation-not-allowed":
-        "Enable Email/Password in Firebase Authentication settings."
-    };
-
-    setMessage(errors[error.code] || error.message);
-  } finally {
-    $("submitBtn").disabled = false;
+   $("message").style.color = "#16804a";
+   $("message").textContent = "Account created successfully!";
+  } else {
+   await signInWithEmailAndPassword(
+    auth,
+    email,
+    password
+   );
   }
+
+ } catch (error) {
+  const errors = {
+   "auth/email-already-in-use":
+    "This email is already registered. Please login.",
+
+   "auth/invalid-email":
+    "Please enter a valid email address.",
+
+   "auth/weak-password":
+    "Password must contain at least 6 characters.",
+
+   "auth/invalid-credential":
+    "Incorrect email or password.",
+
+   "auth/operation-not-allowed":
+    "Enable Email/Password in Firebase Authentication settings.",
+
+   "auth/network-request-failed":
+    "Network error. Check your internet connection.",
+
+   "auth/too-many-requests":
+    "Too many attempts. Please try again later."
+  };
+
+  $("message").textContent =
+   errors[error.code] || error.message;
+
+ } finally {
+  $("submitBtn").disabled = false;
+ }
 });
 
+/* AUTHENTICATION STATE */
 onAuthStateChanged(auth, user => {
-  currentUser = user;
+ currentUser = user;
 
-  $("authScreen").classList.toggle("hidden", !!user);
-  $("appScreen").classList.toggle("hidden", !user);
+ $("authScreen").classList.toggle("hidden", !!user);
+ $("appScreen").classList.toggle("hidden", !user);
 
-  if (user) {
-    $("welcome").textContent =
-      "Welcome, " + (user.displayName || user.email) + "!";
+ if (user) {
+  $("welcome").textContent =
+   "Welcome, " + (user.displayName || user.email) + "!";
 
-    $("userEmail").textContent = user.email || "";
-    renderTopics();
-    renderSaved();
-    showPage("home");
-  }
+  $("userEmail").textContent = user.email;
+
+  renderTopics();
+  renderSaved();
+  showPage("home");
+ }
 });
 
+/* LOGOUT */
 window.logout = async function() {
-  try {
-    await signOut(auth);
-  } catch (error) {
-    alert("Logout failed: " + error.message);
-  }
+ try {
+  await signOut(auth);
+ } catch (error) {
+  alert("Logout failed: " + error.message);
+ }
 };
 
+/* PAGE NAVIGATION */
 window.showPage = function(page) {
-  document.querySelectorAll(".page").forEach(section => {
-    section.classList.toggle("hidden", section.id !== page);
-  });
+ document.querySelectorAll(".page").forEach(section => {
+  section.classList.toggle("hidden", section.id !== page);
+ });
 
-  if (page === "saved") renderSaved();
+ if (page === "saved") renderSaved();
 };
 
-function renderTopics(search="") {
-  const list = $("topicList");
-  list.replaceChildren();
+/* DISPLAY SAFETY TOPICS */
+window.renderTopics = function() {
+ const search = $("topicSearch").value.toLowerCase();
+ const list = $("topicList");
 
-  topics.filter(topic =>
-    (topic.title + " " + topic.description)
-      .toLowerCase().includes(search.toLowerCase())
-  ).forEach(topic => {
-    const card = document.createElement("article");
-    card.className = "topic";
+ list.replaceChildren();
 
-    const title = document.createElement("h3");
-    title.textContent = topic.icon + " " + topic.title;
+ topics
+  .filter(topic =>
+   (topic.title + " " + topic.description)
+    .toLowerCase()
+    .includes(search)
+  )
+  .forEach(topic => {
+   const card = document.createElement("article");
+   card.className = "topic";
 
-    const description = document.createElement("p");
-    description.textContent = topic.description;
+   const title = document.createElement("h3");
+   title.textContent = topic.icon + " " + topic.title;
 
-    const details = document.createElement("p");
-    details.textContent = topic.tip;
+   const description = document.createElement("p");
+   description.textContent = topic.description;
 
-    const save = document.createElement("button");
-    save.textContent = "⭐ Save Tip";
-    save.addEventListener("click", () => saveTip(topic.title, topic.tip));
+   const save = document.createElement("button");
+   save.textContent = "⭐ Save Tip";
 
-    card.append(title, description, details, save);
-    list.appendChild(card);
+   save.addEventListener("click", () => saveTip(topic));
+
+   card.append(title, description, save);
+   list.appendChild(card);
   });
-}
-
-window.filterTopics = function() {
-  renderTopics($("topicSearch").value);
 };
 
+/* SAVED TIPS */
 function getSaved() {
-  if (!currentUser) return [];
+ if (!currentUser) return [];
 
-  try {
-    return JSON.parse(
-      localStorage.getItem("safetyTips_" + currentUser.uid) || "[]"
-    );
-  } catch {
-    return [];
-  }
+ try {
+  return JSON.parse(
+   localStorage.getItem("safetyTips_" + currentUser.uid) || "[]"
+  );
+ } catch {
+  return [];
+ }
 }
 
-function saveTip(title, tip) {
-  const saved = getSaved();
+function saveTip(topic) {
+ const saved = getSaved();
 
-  if (saved.some(item => item.title === title)) {
-    alert("This tip is already saved.");
-    return;
-  }
+ if (saved.some(item => item.title === topic.title)) {
+  alert("This tip is already saved.");
+  return;
+ }
 
-  saved.push({title, tip});
+ saved.push({
+  title: topic.title,
+  description: topic.description
+ });
 
-  localStorage.setItem(
-    "safetyTips_" + currentUser.uid,
-    JSON.stringify(saved)
-  );
+ localStorage.setItem(
+  "safetyTips_" + currentUser.uid,
+  JSON.stringify(saved)
+ );
 
-  alert("Safety tip saved!");
+ alert("Safety tip saved!");
 }
 
 function renderSaved() {
-  const list = $("savedList");
-  list.replaceChildren();
+ const list = $("savedList");
+ list.replaceChildren();
 
-  const saved = getSaved();
+ const saved = getSaved();
 
-  if (!saved.length) {
-    list.textContent = "No saved tips yet. Explore Safety Topics to save one.";
-    return;
-  }
+ if (!saved.length) {
+  list.textContent = "No saved tips yet. Visit Safety Topics to save tips.";
+  return;
+ }
 
-  saved.forEach((item, index) => {
-    const card = document.createElement("div");
-    card.className = "topic";
+ saved.forEach((item, index) => {
+  const card = document.createElement("div");
+  card.className = "topic";
 
-    const title = document.createElement("h3");
-    title.textContent = "⭐ " + item.title;
+  const title = document.createElement("h3");
+  title.textContent = "⭐ " + item.title;
 
-    const tip = document.createElement("p");
-    tip.textContent = item.tip;
+  const description = document.createElement("p");
+  description.textContent = item.description;
 
-    const remove = document.createElement("button");
-    remove.textContent = "Remove";
-    remove.className = "secondary";
+  const remove = document.createElement("button");
+  remove.className = "secondary";
+  remove.textContent = "Remove";
 
-    remove.addEventListener("click", () => {
-      const current = getSaved();
-      current.splice(index, 1);
+  remove.addEventListener("click", () => {
+   const current = getSaved();
+   current.splice(index, 1);
 
-      localStorage.setItem(
-        "safetyTips_" + currentUser.uid,
-        JSON.stringify(current)
-      );
+   localStorage.setItem(
+    "safetyTips_" + currentUser.uid,
+    JSON.stringify(current)
+   );
 
-      renderSaved();
-    });
-
-    card.append(title, tip, remove);
-    list.appendChild(card);
+   renderSaved();
   });
+
+  card.append(title, description, remove);
+  list.appendChild(card);
+ });
 }
 
+/* SAFETY BUDDY */
 window.askBuddy = function() {
-  const question = $("question").value.trim().toLowerCase();
+ const question = $("question").value.trim().toLowerCase();
 
-  if (!question) {
-    $("chatAnswer").textContent = "Please enter a question first.";
-    return;
-  }
+ if (!question) {
+  $("answer").textContent = "Please enter a question first.";
+  return;
+ }
 
-  let answer =
-    "Please speak with a trusted teacher, parent or guardian who can help you stay safe. If anyone is in immediate danger, move to safety and contact local emergency services.";
+ let answer =
+  "Please speak with a trusted teacher, parent or guardian who can help you stay safe. If anyone is in immediate danger, move to safety and contact local emergency services.";
 
-  if (question.includes("bully") || question.includes("bullying")) {
-    answer = "Stay calm, move to a safe place and tell a trusted teacher or adult. Do not retaliate. If bullying happens online, keep relevant evidence and report it.";
-  } else if (question.includes("password") || question.includes("hack") || question.includes("online")) {
-    answer = "Use a strong, unique password. Never share verification codes or passwords. Avoid suspicious links and report online threats to a trusted adult.";
-  } else if (question.includes("fire")) {
-    answer = "Raise the alarm, leave by the designated safe exit and follow school emergency instructions. Never use an elevator during a fire.";
-  } else if (question.includes("emergency") || question.includes("danger")) {
-    answer = "Move away from danger if possible, alert a trusted adult and contact local emergency services if anyone is in immediate danger.";
-  } else if (question.includes("sad") || question.includes("stress") || question.includes("scared")) {
-    answer = "You deserve support. Talk to a trusted adult, teacher or school counsellor. If you feel unsafe, go to a safe place and ask for help.";
-  } else if (question.includes("report") || question.includes("teacher")) {
-    answer = "Tell a trusted teacher, school administrator or guardian what happened. Explain where and when it happened and whether anyone is in immediate danger.";
-  }
+ if (question.includes("bully")) {
+  answer =
+   "Stay calm, move to a safe place and tell a trusted teacher or adult. Do not retaliate. If bullying happens online, keep relevant evidence and report it.";
+ } else if (
+  question.includes("password") ||
+  question.includes("hack") ||
+  question.includes("online")
+ ) {
+  answer =
+   "Use a strong, unique password. Never share verification codes or passwords. Avoid suspicious links and report online threats to a trusted adult.";
+ } else if (question.includes("fire")) {
+  answer =
+   "Raise the alarm, leave by the designated safe exit and follow school emergency instructions. Never use an elevator during a fire.";
+ } else if (
+  question.includes("emergency") ||
+  question.includes("danger")
+ ) {
+  answer =
+   "Move away from danger if possible, alert a trusted adult and contact local emergency services if anyone is in immediate danger.";
+ } else if (
+  question.includes("sad") ||
+  question.includes("stress") ||
+  question.includes("scared")
+ ) {
+  answer =
+   "You deserve support. Talk to a trusted adult, teacher or school counsellor. If you feel unsafe, go to a safe place and ask for help.";
+ }
 
-  $("chatAnswer").textContent = answer;
-};
-
-window.changeLanguage = function() {
-  const language = $("language").value;
-  const labels = translations[language];
-
-  const buttons = document.querySelectorAll("nav button");
-  buttons[0].textContent = labels.home;
-  buttons[1].textContent = labels.topics;
-  buttons[2].textContent = labels.buddy;
-  buttons[3].textContent = labels.saved;
-  buttons[4].textContent = labels.settings;
-
-  document.documentElement.lang = language;
+ $("answer").textContent = answer;
 };
 </script>
 
