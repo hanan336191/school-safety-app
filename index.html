@@ -4,628 +4,1005 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#080d20">
-<title>School Safety App</title>
+<title>School Safety AI | Smart Student Protection</title>
 
 <style>
 :root{
-  --bg:#080d20;
-  --panel:#101a35;
-  --panel2:#142142;
-  --blue:#38bdf8;
-  --purple:#a78bfa;
-  --text:#f1f5f9;
-  --muted:#aab6d3;
-  --red:#fb7185;
-  --green:#4ade80;
-  --orange:#fb923c;
-  --border:rgba(148,163,184,.18);
+--bg:#080d20;
+--panel:#101831;
+--panel2:#151f3e;
+--blue:#18aaff;
+--purple:#9b5cff;
+--green:#26e6a5;
+--red:#ff526b;
+--orange:#ffb347;
+--text:#f4f7ff;
+--muted:#a7b3d1;
+--border:rgba(255,255,255,.09);
 }
-*{box-sizing:border-box}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
 body{
-  margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:radial-gradient(circle at top right,#192653 0,transparent 35%),var(--bg);
-  color:var(--text);
-  min-height:100vh;
+background:radial-gradient(ellipse at top left,rgba(24,170,255,.12),transparent 38%),
+radial-gradient(ellipse at top right,rgba(155,92,255,.12),transparent 35%),var(--bg);
+color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.6;min-height:100vh
 }
 button,input,select,textarea{font:inherit}
-button,a{cursor:pointer}
-button{color:inherit}
+button,a{-webkit-tap-highlight-color:transparent}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
 .hidden{display:none!important}
-.container{width:min(1150px,94%);margin:auto}
-header{
-  position:sticky;top:0;z-index:10;
-  background:rgba(8,13,32,.94);
-  backdrop-filter:blur(15px);
-  border-bottom:1px solid var(--border);
-}
-.nav{
-  display:flex;align-items:center;justify-content:space-between;
-  gap:12px;padding:15px 0;
-}
-.brand{font-size:20px;font-weight:800}
-.brand span{color:var(--blue)}
-.logo{
-  display:inline-grid;place-items:center;
-  width:38px;height:38px;border-radius:12px;
-  background:linear-gradient(135deg,#2563eb,#9333ea);
-  margin-right:8px;
-}
-button,.btn{
-  border:0;border-radius:11px;padding:11px 15px;
-  font-weight:700;background:linear-gradient(135deg,#2563eb,#7c3aed);
-  color:white;text-decoration:none;display:inline-block;
-}
-button:hover,.btn:hover{filter:brightness(1.13)}
-.secondary{background:#202d4b;border:1px solid var(--border)}
-.danger{background:#9f1239}
-.success{background:#166534}
-input,select,textarea{
-  width:100%;padding:12px;margin:7px 0 12px;
-  color:var(--text);background:#0b142b;
-  border:1px solid #344365;border-radius:10px;
-}
-label{font-size:13px;color:var(--muted)}
-h1{font-size:clamp(27px,5vw,43px);margin:10px 0}
-h2{font-size:24px;margin:8px 0 14px}
-h3{margin:9px 0}
-p{line-height:1.6}
+.container{width:min(1180px,92%);margin:auto}
 .muted{color:var(--muted)}
-.hero{padding:35px 0 20px}
-.hero-box{
-  padding:28px;border:1px solid var(--border);border-radius:22px;
-  background:linear-gradient(120deg,rgba(37,99,235,.18),rgba(124,58,237,.15));
+.blue{color:var(--blue)}
+.purple{color:var(--purple)}
+.green{color:var(--green)}
+.red{color:var(--red)}
+.orange{color:var(--orange)}
+
+header{
+position:sticky;top:0;z-index:1000;
+background:rgba(8,13,32,.95);backdrop-filter:blur(18px);
+border-bottom:1px solid var(--border)
 }
-.hero-box p{max-width:650px;color:var(--muted)}
-.section{padding:20px 0 35px}
-.grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:14px;
+.navbar{
+min-height:75px;display:flex;align-items:center;
+justify-content:space-between;gap:15px;flex-wrap:wrap;padding:10px 0
 }
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:18px}
+.brand-icon{
+width:43px;height:43px;border-radius:14px;
+display:grid;place-items:center;font-size:24px;
+background:linear-gradient(135deg,var(--blue),var(--purple))
+}
+.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:2px}
+.nav-links{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.nav-links a{font-size:12px;font-weight:800;color:var(--muted)}
+.nav-links a:hover{color:var(--blue)}
+.language{
+background:var(--panel);color:white;border:1px solid var(--border);
+padding:9px;border-radius:10px;max-width:125px
+}
+.btn{
+border:0;border-radius:11px;padding:11px 16px;font-weight:800;
+font-size:13px;display:inline-flex;align-items:center;
+justify-content:center;gap:7px;transition:.2s
+}
+.btn:hover{transform:translateY(-2px)}
+.primary{background:linear-gradient(135deg,var(--blue),#4777ff);color:white}
+.purple-btn{background:linear-gradient(135deg,var(--purple),#7046ff);color:white}
+.green-btn{background:linear-gradient(135deg,#16c994,var(--green));color:#061b19}
+.red-btn{background:linear-gradient(135deg,var(--red),#ff7043);color:white}
+.outline{background:rgba(24,170,255,.07);border:1px solid rgba(24,170,255,.4);color:white}
+.muted-btn{background:var(--panel2);color:white;border:1px solid var(--border)}
+
+.hero{padding:65px 0 45px}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:35px;align-items:center}
+.eyebrow{
+display:inline-block;color:var(--green);background:rgba(38,230,165,.08);
+border:1px solid rgba(38,230,165,.2);padding:7px 13px;
+border-radius:50px;font-size:11px;font-weight:900;letter-spacing:1px;margin-bottom:20px
+}
+h1{font-size:clamp(36px,5.5vw,65px);line-height:1.1;letter-spacing:-1.5px;margin-bottom:20px}
+.gradient{
+background:linear-gradient(90deg,var(--blue),var(--purple),#f078ff);
+-webkit-background-clip:text;background-clip:text;color:transparent
+}
+.hero p{color:var(--muted);font-size:15px;max-width:570px;margin-bottom:24px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.hero-visual{
+min-height:330px;position:relative;display:grid;place-items:center;
+border-radius:28px;border:1px solid rgba(24,170,255,.2);
+background:radial-gradient(circle,rgba(24,170,255,.15),transparent 65%),var(--panel);
+overflow:hidden
+}
+.hero-visual:before,.hero-visual:after{
+content:"";position:absolute;width:230px;height:230px;
+border:1px solid rgba(24,170,255,.2);border-radius:50%
+}
+.hero-visual:after{width:310px;height:310px}
+.shield{z-index:1;font-size:115px;filter:drop-shadow(0 0 25px rgba(24,170,255,.5))}
+.float{
+position:absolute;z-index:2;padding:10px 13px;border:1px solid var(--border);
+background:#121d39;border-radius:12px;font-size:12px;font-weight:800
+}
+.f1{top:15%;left:5%}.f2{top:32%;right:4%}.f3{bottom:12%;left:15%}
+
+section{padding:48px 0}
+.section-heading{margin-bottom:25px}
+.section-heading h2{font-size:clamp(25px,3vw,35px);line-height:1.2;margin-bottom:9px}
+.section-heading p{color:var(--muted);font-size:14px}
+.center{text-align:center}
+.center p{max-width:650px;margin:auto}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
 .card{
-  background:linear-gradient(150deg,var(--panel2),var(--panel));
-  border:1px solid var(--border);border-radius:16px;padding:18px;
-  min-width:0;
+background:linear-gradient(145deg,rgba(19,30,59,.96),rgba(13,21,43,.98));
+border:1px solid var(--border);border-radius:18px;padding:22px;min-width:0;transition:.2s
 }
-.card p{color:var(--muted);font-size:14px}
-.icon{font-size:29px}
-.card .btn,.card button{margin-top:9px}
-.page-title{padding:25px 0 10px}
-.back{margin:15px 0}
-.notice{
-  border:1px solid rgba(251,146,60,.4);
-  background:rgba(251,146,60,.08);
-  padding:13px;border-radius:12px;color:#fed7aa;font-size:13px;
+.card:hover{transform:translateY(-3px);border-color:rgba(24,170,255,.4)}
+.card-icon{font-size:32px;margin-bottom:10px}
+.card h3{font-size:17px;margin-bottom:8px}
+.card p{color:var(--muted);font-size:13px;margin-bottom:13px}
+.card ul{padding-left:18px;color:var(--muted);font-size:13px}
+.card li{margin:6px 0}
+.card .btn{margin-top:10px}
+
+.status-bar{
+display:flex;justify-content:space-between;align-items:center;gap:12px;
+flex-wrap:wrap;border:1px solid var(--border);background:var(--panel);
+border-radius:14px;padding:16px 18px;margin-top:22px
 }
-.status{font-size:13px;color:var(--muted);min-height:20px}
-.auth-wrap{min-height:100vh;display:grid;place-items:center;padding:20px}
-.auth-card{width:min(430px,100%);padding:25px}
-.auth-card h1{font-size:29px}
-.top-actions{display:flex;gap:8px;align-items:center}
-.small{font-size:12px}
-.video-cover{
-  height:100px;display:grid;place-items:center;
-  background:linear-gradient(135deg,#142c61,#39236d);
-  border-radius:12px;font-size:40px;margin-bottom:12px;
+.status-dot{display:inline-block;width:9px;height:9px;background:var(--green);border-radius:50%;margin-right:7px}
+
+.emergency-section{background:linear-gradient(180deg,rgba(255,82,107,.04),transparent)}
+.emergency-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.emergency-card{
+text-align:center;padding:19px 11px;background:var(--panel);
+border:1px solid rgba(255,82,107,.2);border-radius:16px
 }
-.tag{
-  display:inline-block;padding:5px 8px;border-radius:7px;
-  background:#263458;color:#c4b5fd;font-size:11px;margin-bottom:7px;
+.emergency-icon{font-size:31px}
+.emergency-card h3{font-size:14px}
+.phone-number{font-size:23px;font-weight:900;color:var(--orange);margin:8px 0}
+.emergency-card .btn{width:100%;padding:9px 5px}
+.note{font-size:12px;color:var(--muted);margin-top:16px;padding:14px;border:1px solid var(--border);border-radius:12px}
+
+.video-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+.video-card{overflow:hidden;border-radius:18px;background:var(--panel);border:1px solid var(--border)}
+.video-thumb{
+height:160px;display:grid;place-items:center;
+background:linear-gradient(135deg,rgba(24,170,255,.12),rgba(155,92,255,.3));
+font-size:65px;position:relative
 }
-ul.steps{padding-left:20px;color:#dbeafe;line-height:1.8}
-.answer{white-space:pre-line;background:#0a142b;border-radius:12px;padding:15px;margin-top:12px}
-footer{padding:25px 0;text-align:center;color:var(--muted);font-size:12px;border-top:1px solid var(--border)}
-hr{border:0;border-top:1px solid var(--border);margin:18px 0}
-@media(max-width:550px){
-  .nav{align-items:flex-start}
-  .brand{font-size:17px}
-  .top-actions{flex-wrap:wrap;justify-content:flex-end}
-  .hero-box{padding:20px}
-  .grid{grid-template-columns:1fr}
+.video-thumb span{
+position:absolute;right:10px;bottom:10px;font-size:11px;
+background:rgba(8,13,32,.9);padding:5px 9px;border-radius:8px
+}
+.video-content{padding:17px}
+.video-content h3{font-size:16px;margin-bottom:6px}
+.video-content p{font-size:12px;color:var(--muted);margin-bottom:13px}
+.video-content .btn{width:100%}
+
+.ai-panel{display:grid;grid-template-columns:.8fr 1.2fr;gap:22px;align-items:start}
+.ai-info{
+background:linear-gradient(145deg,rgba(24,170,255,.09),rgba(155,92,255,.09));
+border:1px solid rgba(24,170,255,.2);border-radius:20px;padding:25px
+}
+.ai-info .big{font-size:43px}
+.ai-info h3{font-size:22px;margin:10px 0}
+.ai-info p{font-size:13px;color:var(--muted);margin-bottom:14px}
+.chat-box{border:1px solid var(--border);background:#0d152b;border-radius:19px;overflow:hidden}
+.chat-header{padding:15px 18px;background:var(--panel2);display:flex;gap:12px;align-items:center}
+.chat-header-icon{
+width:42px;height:42px;display:grid;place-items:center;
+background:linear-gradient(135deg,var(--blue),var(--purple));border-radius:12px;font-size:22px
+}
+.chat-header h3{font-size:14px}
+.chat-header small{color:var(--green);font-size:11px}
+.chat-messages{
+height:300px;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:12px
+}
+.message{
+max-width:90%;border-radius:12px;padding:11px 13px;
+font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere
+}
+.bot{align-self:flex-start;background:var(--panel2);border:1px solid var(--border)}
+.user{align-self:flex-end;background:linear-gradient(135deg,#147acb,#6752db)}
+.quick-questions{padding:0 13px 13px;display:flex;gap:7px;flex-wrap:wrap}
+.quick-question{
+border:1px solid rgba(24,170,255,.3);background:rgba(24,170,255,.06);
+color:var(--blue);border-radius:30px;padding:7px 10px;font-size:11px
+}
+.chat-form{padding:13px;display:flex;gap:8px;border-top:1px solid var(--border)}
+.chat-form input{
+flex:1;min-width:0;background:var(--panel);border:1px solid var(--border);
+color:white;border-radius:11px;padding:12px;outline:none
+}
+
+.tips-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.tip-row{display:flex;gap:13px;padding:17px;background:var(--panel);border:1px solid var(--border);border-radius:14px}
+.tip-emoji{font-size:28px}
+.tip-row h3{font-size:15px;margin-bottom:4px}
+.tip-row p{font-size:12px;color:var(--muted)}
+
+.buddy-panel{
+display:grid;grid-template-columns:.7fr 1.3fr;gap:20px;
+padding:25px;border:1px solid rgba(155,92,255,.2);border-radius:20px;
+background:linear-gradient(135deg,rgba(155,92,255,.09),rgba(24,170,255,.06))
+}
+.buddy-visual{display:grid;place-items:center;font-size:85px}
+.buddy-panel h3{font-size:21px;margin-bottom:8px}
+.buddy-panel p{font-size:13px;color:var(--muted);margin-bottom:13px}
+select,textarea{
+background:var(--bg);color:white;border:1px solid var(--border);
+border-radius:10px;padding:11px;width:100%;margin-bottom:12px
+}
+.buddy-result{
+margin-top:13px;padding:14px;background:rgba(8,13,32,.7);
+border:1px solid var(--border);border-radius:12px;font-size:13px;white-space:pre-wrap
+}
+
+.auth-area{display:flex;justify-content:center}
+.auth-card{
+width:100%;max-width:460px;padding:26px;background:var(--panel);
+border:1px solid var(--border);border-radius:21px
+}
+.auth-card h3{font-size:24px;margin-bottom:5px}
+.auth-card>p{color:var(--muted);font-size:13px;margin-bottom:18px}
+.auth-card label{display:block;font-size:12px;color:var(--muted);margin-bottom:5px}
+.auth-card input{
+width:100%;background:var(--bg);color:white;border:1px solid var(--border);
+border-radius:10px;padding:12px;margin-bottom:14px;outline:none
+}
+.auth-card input:focus{border-color:var(--blue)}
+.auth-card .btn{width:100%;margin-top:5px}
+.auth-switch{text-align:center;color:var(--muted);font-size:12px;margin-top:14px}
+.auth-switch button{color:var(--blue);background:none;border:0;font-weight:800}
+.auth-message{font-size:12px;margin-top:12px;overflow-wrap:anywhere}
+.account-panel{margin-top:15px;padding:14px;background:var(--panel2);border-radius:12px}
+
+footer{margin-top:35px;border-top:1px solid var(--border);padding:30px 0;background:rgba(8,13,32,.7)}
+.footer-grid{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+footer p{font-size:12px;color:var(--muted)}
+
+.toast{
+position:fixed;z-index:2000;bottom:20px;left:50%;transform:translateX(-50%);
+max-width:90%;background:#192747;color:white;padding:12px 18px;
+border:1px solid rgba(24,170,255,.3);border-radius:12px;font-size:13px;
+display:none
+}
+.toast.show{display:block}
+
+@media(max-width:950px){
+.hero-grid,.ai-panel,.buddy-panel{grid-template-columns:1fr}
+.emergency-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.grid,.video-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.nav-links{gap:9px}
+}
+@media(max-width:600px){
+.container{width:92%}
+.hero{padding-top:38px}
+.hero-visual{min-height:260px}
+.grid,.video-grid,.tips-grid{grid-template-columns:1fr}
+.emergency-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.navbar{justify-content:center}
+.nav-links{justify-content:center}
+.nav-actions{justify-content:center}
+.buddy-panel{padding:17px}
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN / REGISTER -->
-<section id="authScreen" class="auth-wrap">
-  <div class="card auth-card">
-    <div class="brand"><span class="logo">🛡️</span>School Safety <span>App</span></div>
-    <p class="muted">Learn safety. Stay prepared. Protect lives.</p>
+<header>
+<div class="container navbar">
+<a class="brand" href="#home">
+<span class="brand-icon">🛡️</span>
+<span>School Safety AI<small>SMART STUDENT PROTECTION</small></span>
+</a>
 
-    <div id="loginForm">
-      <h1>Welcome Back</h1>
-      <p class="muted">Login to your safety dashboard.</p>
-      <label>Email Address</label>
-      <input id="loginEmail" type="email" placeholder="Enter your email" autocomplete="email">
-      <label>Password</label>
-      <input id="loginPassword" type="password" placeholder="Enter your password" autocomplete="current-password">
-      <button id="loginBtn" style="width:100%">Login</button>
-      <p class="status" id="loginStatus"></p>
-      <p class="small">New here? <a href="#" id="showRegister" style="color:var(--blue)">Create an account</a></p>
-    </div>
+<nav class="nav-links">
+<a href="#home">Home</a>
+<a href="#safety">Safety</a>
+<a href="#videos">Videos</a>
+<a href="#emergency">Emergency</a>
+<a href="#assistant">AI Assistant</a>
+<a href="#account">Account</a>
+</nav>
 
-    <div id="registerForm" class="hidden">
-      <h1>Create Account</h1>
-      <label>Full Name</label>
-      <input id="registerName" type="text" placeholder="Enter your name" autocomplete="name">
-      <label>Email Address</label>
-      <input id="registerEmail" type="email" placeholder="Enter your email" autocomplete="email">
-      <label>Password (at least 6 characters)</label>
-      <input id="registerPassword" type="password" placeholder="Create a password" autocomplete="new-password">
-      <button id="registerBtn" style="width:100%">Register</button>
-      <p class="status" id="registerStatus"></p>
-      <p class="small">Already registered? <a href="#" id="showLogin" style="color:var(--blue)">Login</a></p>
-    </div>
+<div class="nav-actions">
+<select class="language" id="language" aria-label="Language">
+<option value="en">English</option>
+<option value="ur">اردو</option>
+<option value="sd">سنڌي</option>
+</select>
+<a class="btn outline" href="#account">Login / Register</a>
+</div>
+</div>
+</header>
 
-    <p class="small muted">Your account is managed by Firebase Authentication.</p>
-  </div>
-</section>
+<main>
 
-<!-- MAIN APP -->
-<div id="appScreen" class="hidden">
-  <header>
-    <div class="container nav">
-      <div class="brand"><span class="logo">🛡️</span>School Safety <span>App</span></div>
-      <div class="top-actions">
-        <span id="userName" class="small muted"></span>
-        <button id="logoutBtn" class="secondary">Logout</button>
-      </div>
-    </div>
-  </header>
-
-  <main class="container">
-    <!-- DASHBOARD -->
-    <section id="dashboardPage">
-      <div class="hero">
-        <div class="hero-box">
-          <span class="tag">SAFETY • AWARENESS • PREPARATION</span>
-          <h1>Stay Safe. Be Prepared.</h1>
-          <p>School emergencies ke bare mein seekho, safety videos explore karo aur zaroorat par emergency contacts tak pohancho.</p>
-          <button onclick="openPage('emergencyPage')">🚨 Emergency Contacts</button>
-        </div>
-      </div>
-
-      <section class="section">
-        <h2>Your Safety Dashboard</h2>
-        <p class="muted">Kisi option par click karo. Har feature apne alag section mein khulega.</p>
-        <div class="grid">
-          <div class="card"><div class="icon">🎬</div><h3>Safety Videos</h3><p>Different emergencies ke liye educational video searches.</p><button onclick="openPage('videosPage')">Open Videos →</button></div>
-          <div class="card"><div class="icon">🌍</div><h3>Natural Threats</h3><p>Earthquake, flood, storm, heavy rain aur doosre natural hazards.</p><button onclick="openCategory('Natural Threats')">Explore →</button></div>
-          <div class="card"><div class="icon">🚨</div><h3>External Threats</h3><p>Fire, intruder, fights, unsafe buildings aur electrical hazards.</p><button onclick="openCategory('External Threats')">Explore →</button></div>
-          <div class="card"><div class="icon">🩺</div><h3>Medical Conditions</h3><p>Fainting, injuries, heat stroke, bleeding aur common illnesses.</p><button onclick="openCategory('Medical Conditions')">Explore →</button></div>
-          <div class="card"><div class="icon">🤖</div><h3>Safety Buddy</h3><p>Emergency ke waqt basic safety guidance hasil karo.</p><button onclick="openPage('buddyPage')">Ask Safety Buddy →</button></div>
-          <div class="card"><div class="icon">📌</div><h3>Saved Safety Tips</h3><p>Apne pasandeeda safety instructions save karo.</p><button onclick="openPage('savedPage')">View Saved Tips →</button></div>
-          <div class="card"><div class="icon">⚙️</div><h3>Settings & Profile</h3><p>Account aur app ki basic settings.</p><button onclick="openPage('settingsPage')">Open Settings →</button></div>
-          <div class="card"><div class="icon">📞</div><h3>Emergency Contacts</h3><p>Ambulance, police, fire brigade aur doosre contacts.</p><button onclick="openPage('emergencyPage')">View Contacts →</button></div>
-        </div>
-      </section>
-    </section>
-
-    <!-- CATEGORY PAGE -->
-    <section id="categoryPage" class="hidden">
-      <div class="page-title"><button class="secondary back" onclick="goHome()">← Dashboard</button><h1 id="categoryTitle">Safety Categories</h1><p class="muted" id="categoryDescription"></p></div>
-      <div class="grid" id="categoryGrid"></div>
-    </section>
-
-    <!-- DETAIL PAGE -->
-    <section id="detailPage" class="hidden">
-      <button class="secondary back" onclick="goBackCategory()">← Back to Categories</button>
-      <div class="card">
-        <span class="tag" id="detailCategory"></span>
-        <h1 id="detailTitle"></h1>
-        <p class="muted" id="detailIntro"></p>
-        <h3>What should you do?</h3>
-        <ul class="steps" id="detailSteps"></ul>
-        <div class="notice">If there is immediate danger, alert a responsible adult and contact the appropriate local emergency service. Follow instructions from emergency responders.</div>
-        <button id="saveTipBtn">📌 Save Safety Tip</button>
-        <button class="secondary" id="findDetailVideo">🎬 Find Safety Videos</button>
-      </div>
-    </section>
-
-    <!-- VIDEOS -->
-    <section id="videosPage" class="hidden">
-      <div class="page-title"><button class="secondary back" onclick="goHome()">← Dashboard</button><h1>🎬 Safety Videos</h1><p class="muted">Topics ki list mein se video search karo.</p></div>
-      <input id="videoSearch" placeholder="Search a safety topic...">
-      <div class="grid" id="videoGrid"></div>
-      <p class="small muted">Note: Links YouTube search results kholte hain. Har result ki duration ya accuracy verify karein; 7–10 second ki duration guaranteed nahi hai.</p>
-    </section>
-
-    <!-- EMERGENCY -->
-    <section id="emergencyPage" class="hidden">
-      <div class="page-title"><button class="secondary back" onclick="goHome()">← Dashboard</button><h1>🚨 Emergency Contacts</h1><p class="muted">Emergency mein apni location aur situation clearly batayein.</p></div>
-      <div class="grid" id="emergencyGrid"></div>
-      <div class="notice" style="margin-top:15px">Emergency numbers ilaqay ke mutabiq mukhtalif ho sakte hain. Call se pehle apne ilaqay mein number verify karein. Sirf genuine emergency mein call karein.</div>
-    </section>
-
-    <!-- SAFETY BUDDY -->
-    <section id="buddyPage" class="hidden">
-      <div class="page-title"><button class="secondary back" onclick="goHome()">← Dashboard</button><h1>🤖 Safety Buddy</h1><p class="muted">Apni safety problem likho aur basic guidance hasil karo.</p></div>
-      <div class="card">
-        <label>What is happening?</label>
-        <textarea id="buddyInput" rows="4" placeholder="Example: There is a fire in my school..."></textarea>
-        <button id="askBuddyBtn">Get Safety Guidance</button>
-        <div id="buddyAnswer" class="answer hidden"></div>
-        <p class="small muted">Yeh built-in keyword-based assistant hai, live AI service nahi. Emergency mein is par depend na karein.</p>
-      </div>
-    </section>
-
-    <!-- SAVED TIPS -->
-    <section id="savedPage" class="hidden">
-      <div class="page-title"><button class="secondary back" onclick="goHome()">← Dashboard</button><h1>📌 Saved Safety Tips</h1><p class="muted">Tips is browser mein save hongi.</p></div>
-      <div class="grid" id="savedGrid"></div>
-      <p id="emptySaved" class="muted">Abhi koi tip save nahi ki gayi.</p>
-    </section>
-
-    <!-- SETTINGS -->
-    <section id="settingsPage" class="hidden">
-      <div class="page-title"><button class="secondary back" onclick="goHome()">← Dashboard</button><h1>⚙️ Settings & Profile</h1></div>
-      <div class="card">
-        <h2>Your Profile</h2>
-        <p id="profileEmail" class="muted"></p>
-        <label>Display Name</label>
-        <input id="profileName" placeholder="Enter your name">
-        <button id="saveProfileBtn">Save Display Name</button>
-        <p id="profileStatus" class="status"></p>
-        <hr>
-        <h3>App Information</h3>
-        <p class="muted">School Safety App — awareness and preparedness for school emergencies.</p>
-        <button class="danger" id="settingsLogoutBtn">Logout</button>
-      </div>
-    </section>
-  </main>
-
-  <footer>School Safety App • Learn safety, stay prepared.</footer>
+<section class="hero" id="home">
+<div class="container hero-grid">
+<div>
+<div class="eyebrow">● YOUR SAFETY, OUR PRIORITY</div>
+<h1>Be Ready.<br><span class="gradient">Stay Safe.</span></h1>
+<p id="heroText">Learn how to respond to emergencies at school, at home and outdoors with quick safety guides, short videos and your Safety AI Assistant.</p>
+<div class="hero-actions">
+<a href="#safety" class="btn primary" id="exploreBtn">Explore Safety Guides →</a>
+<a href="#videos" class="btn purple-btn" id="videoBtn">▶ Watch Safety Videos</a>
 </div>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import {
-  getAuth, onAuthStateChanged, createUserWithEmailAndPassword,
-  signInWithEmailAndPassword, signOut, updateProfile
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+<div class="status-bar">
+<div><span class="status-dot"></span><strong>Safety Learning Centre</strong></div>
+<div class="muted">Learn • Prepare • Protect</div>
+</div>
+</div>
 
-/* Firebase configuration */
-const firebaseConfig = {
-  apiKey: "AIzaSyDFb_QOeLL_7IsvSEum4fchb8xdub1al_g",
-  authDomain: "school-safety-app-e387e.firebaseapp.com",
-  projectId: "school-safety-app-e387e",
-  storageBucket: "school-safety-app-e387e.firebasestorage.app",
-  messagingSenderId: "528794286660",
-  appId: "1:528794286660:web:c70c1403aed13eda6a9a11",
-  measurementId: "G-3EEEWP9R3D"
+<div class="hero-visual">
+<div class="shield">🛡️</div>
+<div class="float f1">🌍 Disaster Ready</div>
+<div class="float f2">🤖 Safety AI</div>
+<div class="float f3">💚 Student Protection</div>
+</div>
+</div>
+</section>
+
+<section id="safety">
+<div class="container">
+<div class="section-heading center">
+<h2 id="safetyHeading">Explore Safety Categories</h2>
+<p id="safetySubtitle">Simple steps to help you stay safe during emergencies.</p>
+</div>
+
+<div class="grid">
+<article class="card">
+<div class="card-icon">🌧️</div>
+<h3 class="orange">Rain & Flood Safety</h3>
+<p>Stay safe during heavy rain, flooding and thunderstorms.</p>
+<ul>
+<li>Move to higher ground if flooding threatens.</li>
+<li>Never walk or drive through floodwater.</li>
+<li>Stay away from fallen electrical wires.</li>
+<li>Follow official weather and emergency alerts.</li>
+</ul>
+</article>
+
+<article class="card">
+<div class="card-icon">🌎</div>
+<h3 class="red">Earthquake Safety</h3>
+<p>Know what to do during and after an earthquake.</p>
+<ul>
+<li>Drop, Cover and Hold On.</li>
+<li>Protect your head and neck.</li>
+<li>Stay away from windows and heavy objects.</li>
+<li>When shaking stops, evacuate if instructed.</li>
+</ul>
+</article>
+
+<article class="card">
+<div class="card-icon">🔥</div>
+<h3 class="orange">Fire Safety</h3>
+<p>Learn how to respond safely to a fire.</p>
+<ul>
+<li>Raise the alarm and leave immediately.</li>
+<li>Use stairs, never elevators.</li>
+<li>Stay low if there is smoke.</li>
+<li>Never re-enter a burning building.</li>
+</ul>
+</article>
+
+<article class="card">
+<div class="card-icon">🚑</div>
+<h3 class="red">Medical Emergency</h3>
+<p>Respond carefully when someone is injured or unwell.</p>
+<ul>
+<li>Call a responsible adult and emergency services.</li>
+<li>Do not move someone with a possible serious injury.</li>
+<li>Do not give an unconscious person food or drink.</li>
+<li>Follow instructions from emergency professionals.</li>
+</ul>
+</article>
+
+<article class="card">
+<div class="card-icon">⚡</div>
+<h3 class="orange">Electrical Safety</h3>
+<p>Avoid electrical hazards at school and at home.</p>
+<ul>
+<li>Never touch exposed wires.</li>
+<li>Keep electrical devices away from water.</li>
+<li>Stay far away from fallen power lines.</li>
+<li>Tell an adult about damaged equipment.</li>
+</ul>
+</article>
+
+<article class="card">
+<div class="card-icon">🛡️</div>
+<h3 class="green">Personal Safety</h3>
+<p>Make safer choices and know when to ask for help.</p>
+<ul>
+<li>Stay with trusted adults in emergencies.</li>
+<li>Tell a teacher about unsafe situations.</li>
+<li>Keep emergency contacts accessible.</li>
+<li>Follow your school's evacuation plan.</li>
+</ul>
+</article>
+</div>
+</div>
+</section>
+
+<section class="emergency-section" id="emergency">
+<div class="container">
+<div class="section-heading">
+<h2><span class="red">🚨 Emergency</span> Helplines</h2>
+<p>Emergency contacts for Pakistan. Call only when appropriate and verify local services.</p>
+</div>
+
+<div class="emergency-grid">
+<div class="emergency-card">
+<div class="emergency-icon">🚑</div>
+<h3>Rescue / Ambulance</h3>
+<div class="phone-number">1122</div>
+<a class="btn red-btn" href="tel:1122">📞 Call</a>
+</div>
+
+<div class="emergency-card">
+<div class="emergency-icon">👮</div>
+<h3>Police</h3>
+<div class="phone-number">15</div>
+<a class="btn red-btn" href="tel:15">📞 Call</a>
+</div>
+
+<div class="emergency-card">
+<div class="emergency-icon">🔥</div>
+<h3>Fire Emergency</h3>
+<div class="phone-number">1122</div>
+<a class="btn red-btn" href="tel:1122">📞 Call</a>
+</div>
+
+<div class="emergency-card">
+<div class="emergency-icon">🏙️</div>
+<h3>Municipal Services</h3>
+<div class="phone-number">Local</div>
+<a class="btn outline" href="#municipalNote">ℹ️ Details</a>
+</div>
+
+<div class="emergency-card">
+<div class="emergency-icon">🛡️</div>
+<h3>Rescue Service</h3>
+<div class="phone-number">1122</div>
+<a class="btn red-btn" href="tel:1122">📞 Call</a>
+</div>
+</div>
+
+<p class="note" id="municipalNote">Municipality helplines vary by city and service. Confirm the correct number with your local municipal authority. In Pakistan, 1122 availability and services can vary by province. If you are in immediate danger, contact the relevant local emergency service.</p>
+</div>
+</section>
+
+<!-- VIDEOS SECTION: VIDEOS ONLY -->
+<section id="videos">
+<div class="container">
+<div class="section-heading">
+<h2>🎬 Quick Safety Videos</h2>
+<p>Short video learning for rain, earthquakes, fire and other emergencies. Open a topic to find a suitable short clip.</p>
+</div>
+
+<div class="video-grid">
+
+<article class="video-card">
+<div class="video-thumb">🌧️<span>SHORT VIDEO</span></div>
+<div class="video-content">
+<h3>Rain & Flood Safety</h3>
+<p>Learn what to do during heavy rain and flooding.</p>
+<a class="btn primary" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=AI+animated+flood+safety+short+video+10+seconds">▶ Watch Video</a>
+</div>
+</article>
+
+<article class="video-card">
+<div class="video-thumb">🌎<span>SHORT VIDEO</span></div>
+<div class="video-content">
+<h3>Earthquake: Drop, Cover, Hold On</h3>
+<p>Learn the basic actions to take during shaking.</p>
+<a class="btn primary" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=animated+earthquake+drop+cover+hold+on+short">▶ Watch Video</a>
+</div>
+</article>
+
+<article class="video-card">
+<div class="video-thumb">🔥<span>SHORT VIDEO</span></div>
+<div class="video-content">
+<h3>Fire Escape Safety</h3>
+<p>Learn how to exit a building safely during a fire.</p>
+<a class="btn primary" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=animated+fire+escape+safety+short+video">▶ Watch Video</a>
+</div>
+</article>
+
+<article class="video-card">
+<div class="video-thumb">⚡<span>SHORT VIDEO</span></div>
+<div class="video-content">
+<h3>Electrical Safety</h3>
+<p>Stay away from exposed wires and fallen power lines.</p>
+<a class="btn primary" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=animated+electrical+safety+short+video">▶ Watch Video</a>
+</div>
+</article>
+
+<article class="video-card">
+<div class="video-thumb">🚑<span>SHORT VIDEO</span></div>
+<div class="video-content">
+<h3>Medical Emergency</h3>
+<p>Learn how to get help when someone is injured.</p>
+<a class="btn primary" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=animated+medical+emergency+first+aid+short">▶ Watch Video</a>
+</div>
+</article>
+
+<article class="video-card">
+<div class="video-thumb">⛈️<span>SHORT VIDEO</span></div>
+<div class="video-content">
+<h3>Thunderstorm Safety</h3>
+<p>Learn how to stay safe during lightning and storms.</p>
+<a class="btn primary" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=animated+thunderstorm+lightning+safety+short">▶ Watch Video</a>
+</div>
+</article>
+
+</div>
+</div>
+</section>
+
+<!-- AI ASSISTANT IS SEPARATE FROM VIDEOS -->
+<section id="assistant">
+<div class="container">
+<div class="section-heading">
+<h2>🤖 AI Safety Assistant</h2>
+<p>Ask a safety question and get immediate general guidance.</p>
+</div>
+
+<div class="ai-panel">
+<div class="ai-info">
+<div class="big">🧠</div>
+<h3>Your Safety Buddy</h3>
+<p>Ask about earthquakes, floods, fire, medical emergencies or personal safety.</p>
+<p><strong class="green">Important:</strong> This built-in assistant uses predefined safety guidance. It is not connected to a live AI service and cannot contact emergency services for you.</p>
+<a class="btn outline" href="#emergency">View Emergency Contacts</a>
+</div>
+
+<div class="chat-box">
+<div class="chat-header">
+<div class="chat-header-icon">🤖</div>
+<div><h3>School Safety Assistant</h3><small>● Safety guidance available</small></div>
+</div>
+
+<div class="chat-messages" id="chatMessages" aria-live="polite">
+<div class="message bot">Hello! 👋 I'm your School Safety Assistant. Ask me what to do during an earthquake, flood, fire or medical emergency.</div>
+</div>
+
+<div class="quick-questions">
+<button class="quick-question" data-question="earthquake">🌎 Earthquake</button>
+<button class="quick-question" data-question="flood">🌧️ Flood</button>
+<button class="quick-question" data-question="fire">🔥 Fire</button>
+<button class="quick-question" data-question="medical">🚑 Medical</button>
+</div>
+
+<form class="chat-form" id="chatForm">
+<input id="chatInput" type="text" placeholder="Ask a safety question..." autocomplete="off" required>
+<button class="btn primary" type="submit">Send ➤</button>
+</form>
+</div>
+</div>
+</div>
+</section>
+
+<section id="buddy">
+<div class="container">
+<div class="section-heading">
+<h2>🛡️ Safety Buddy Checklist</h2>
+<p>Choose an emergency to review the recommended first steps.</p>
+</div>
+
+<div class="buddy-panel">
+<div class="buddy-visual">🦺</div>
+<div>
+<h3>What should I do?</h3>
+<p>Select the situation and review the basic safety guidance.</p>
+<select id="buddyScenario">
+<option value="earthquake">Earthquake</option>
+<option value="flood">Heavy rain or flood</option>
+<option value="fire">Fire</option>
+<option value="medical">Medical emergency</option>
+<option value="storm">Thunderstorm</option>
+<option value="electrical">Electrical hazard</option>
+</select>
+<button class="btn purple-btn" id="buddyButton" type="button">Show Safety Steps</button>
+<div class="buddy-result" id="buddyResult">Choose a situation and press “Show Safety Steps”.</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="account">
+<div class="container">
+<div class="section-heading center">
+<h2>🔐 Student Account</h2>
+<p>Register a new account or log in with your existing Firebase account.</p>
+</div>
+
+<div class="auth-area">
+<div class="auth-card">
+<h3 id="authTitle">Create Account</h3>
+<p id="authDescription">School Safety AI | Smart Student Protection</p>
+
+<form id="authForm">
+<div id="nameField">
+<label for="authName">Full Name</label>
+<input id="authName" type="text" placeholder="Enter your full name" autocomplete="name">
+</div>
+
+<label for="authEmail">Email Address</label>
+<input id="authEmail" type="email" placeholder="Enter your email" autocomplete="email" required>
+
+<label for="authPassword">Password</label>
+<input id="authPassword" type="password" placeholder="At least 6 characters" minlength="6" autocomplete="new-password" required>
+
+<button class="btn primary" id="authSubmit" type="submit">Register</button>
+</form>
+
+<div class="auth-switch">
+<span id="authSwitchText">Already have an account?</span>
+<button id="authSwitchButton" type="button">Login</button>
+</div>
+
+<div class="auth-message" id="authMessage" aria-live="polite"></div>
+
+<div class="account-panel hidden" id="loggedInPanel">
+<strong class="green" id="welcomeUser">Welcome!</strong>
+<p class="muted" id="userEmail"></p>
+<button class="btn red-btn" id="logoutButton" type="button" style="margin-top:12px">Log Out</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer>
+<div class="container footer-grid">
+<div>
+<strong>🛡️ School Safety AI</strong>
+<p>Learn • Prepare • Protect</p>
+</div>
+<p>Educational safety guidance. Follow local emergency instructions.</p>
+</div>
+</footer>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* ==========================================
+   LANGUAGE SUPPORT
+   English, Urdu and Sindhi
+========================================== */
+
+const translations = {
+en:{
+hero:"Learn how to respond to emergencies at school, at home and outdoors with quick safety guides, short videos and your Safety AI Assistant.",
+explore:"Explore Safety Guides →",
+videos:"▶ Watch Safety Videos",
+safety:"Explore Safety Categories",
+subtitle:"Simple steps to help you stay safe during emergencies."
+},
+ur:{
+hero:"اسکول، گھر اور باہر ہنگامی حالات میں محفوظ رہنے کے طریقے سیکھیں۔ حفاظتی رہنمائی، مختصر ویڈیوز اور سیفٹی اسسٹنٹ استعمال کریں۔",
+explore:"حفاظتی رہنمائی دیکھیں →",
+videos:"▶ حفاظتی ویڈیوز دیکھیں",
+safety:"حفاظتی موضوعات",
+subtitle:"ہنگامی حالات میں محفوظ رہنے کے آسان طریقے۔"
+},
+sd:{
+hero:"اسڪول، گهر ۽ ٻاهر هنگامي حالتن ۾ محفوظ رهڻ جا طريقا سکو. حفاظتي رهنمائي، مختصر وڊيوز ۽ سيفٽي اسسٽنٽ استعمال ڪريو.",
+explore:"حفاظتي رهنمائي ڏسو →",
+videos:"▶ حفاظتي وڊيوز ڏسو",
+safety:"حفاظتي موضوعات",
+subtitle:"هنگامي حالتن ۾ محفوظ رهڻ جا آسان طريقا."
+}
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+const languageSelect=document.getElementById("language");
 
-const $ = id => document.getElementById(id);
-let currentUser = null;
-let activeCategory = "Natural Threats";
-let activeDetail = null;
+function applyLanguage(lang){
+const t=translations[lang]||translations.en;
+document.getElementById("heroText").textContent=t.hero;
+document.getElementById("exploreBtn").textContent=t.explore;
+document.getElementById("videoBtn").textContent=t.videos;
+document.getElementById("safetyHeading").textContent=t.safety;
+document.getElementById("safetySubtitle").textContent=t.subtitle;
 
-const categories = [
-{
-  category:"External Threats",
-  description:"School ke aas paas ya building mein hone wale hazards.",
-  items:[
-    {title:"Fire",icon:"🔥",intro:"Fire ya smoke nazar aaye to foran safety ko priority dein.",steps:["Fire alarm activate karein aur teacher ko inform karein.","Nearest safe exit se calmly evacuate karein.","Lift use na karein; smoke ho to neeche reh kar nikalne ki koshish karein.","Building se bahar safe meeting point par chalein.","Building mein wapas na jayein jab tak authorities ijazat na dein."]},
-    {title:"Intruder or Unknown Threat",icon:"🚨",intro:"Agar koi dangerous shakhs school mein ho to foran trusted adult ya authorities ko alert karein.",steps:["Agar safe ho to building se door nikal jayein.","Nikalna safe na ho to locked room mein chup kar darwaza secure karein.","Phone silent rakhein aur khud ko nazron se door rakhein.","Threat ka saamna ya confrontation na karein.","Police aur school emergency instructions follow karein."]},
-    {title:"Fight or Clash",icon:"🥊",intro:"Students ke darmiyan fight ho to khud ko safe rakhein.",steps:["Fight ke darmiyan physically na ghusein.","Teacher, security guard ya responsible adult ko bulayein.","Doosre students ko safe distance par rakhein.","Agar koi injured ho to medical help bulayein."]},
-    {title:"Electrical Short Circuit",icon:"⚡",intro:"Sparks, burning smell ya exposed wires dangerous hain.",steps:["Wires aur electrical equipment ko touch na karein.","Area se door ho jayein aur doosron ko warn karein.","Teacher ya maintenance staff ko inform karein.","Aag lage to alarm raise karein aur evacuate karein.","Pani se electrical fire bujhane ki koshish na karein."]},
-    {title:"Unsafe Building",icon:"🏚️",intro:"Cracks, falling material ya unusual structural movement ko serious lein.",steps:["Damaged area se door chale jayein.","Teacher ya school administration ko inform karein.","Cracked walls, ceilings ya exposed structures ke neeche na kharay hon.","Authorities ki inspection tak unsafe area mein wapas na jayein."]},
-    {title:"Hijacking or Hostage Threat",icon:"🛑",intro:"Yeh high-risk situation hai. Emergency responders ki instructions sab se important hain.",steps:["Agar safe ho to threat se door ho jayein.","Threat ko provoke, challenge ya film na karein.","Agar phans gaye hon to calm aur quiet rehne ki koshish karein.","Phone use sirf tab karein jab safe ho.","Police ki instructions follow karein."]},
-    {title:"Unsafe Object",icon:"⚠️",intro:"Unknown bag, chemical ya suspicious object ko touch na karein.",steps:["Object ko bilkul touch ya move na karein.","Area se door ho jayein.","Teacher aur security ko inform karein.","Authorities ko object ki location batayein."]}
-  ]
-},
-{
-  category:"Natural Threats",
-  description:"Earthquake, flood, storm aur weather-related emergencies.",
-  items:[
-    {title:"Earthquake",icon:"🌎",intro:"Earthquake ke waqt Drop, Cover and Hold On follow karein.",steps:["Zameen par jhuk jayein.","Mazboot desk ya table ke neeche cover lein.","Table ko pakar kar us ke neeche rahen.","Windows, glass aur falling objects se door rahen.","Shaking rukne ke baad instructions ke mutabiq evacuate karein."]},
-    {title:"Flood",icon:"🌊",intro:"Flood water bohat dangerous ho sakta hai, chahe pani shallow nazar aaye.",steps:["Higher ground ki taraf move karein.","Flood water mein paidal chalne ya gaari chalane se bachein.","Drains aur fast-moving water se door rahen.","Local authorities ki evacuation instructions follow karein."]},
-    {title:"Heavy Rain",icon:"🌧️",intro:"Heavy rain mein slippery surfaces aur waterlogging ka khatra hota hai.",steps:["Indoor safe jagah par rahen.","Flooded roads aur drains se door rahen.","School ki travel aur evacuation instructions follow karein.","Lightning ya storm ho to open areas se bachein."]},
-    {title:"Storm and Strong Winds",icon:"🌪️",intro:"Strong winds mein trees, signs aur loose objects gir sakte hain.",steps:["Building ke andar rahen aur windows se door ho jayein.","Trees, poles aur outdoor structures se door rahen.","Loose objects ko khud secure karne bahar na jayein.","Official weather warnings follow karein."]},
-    {title:"Falling Tree",icon:"🌳",intro:"Girne wala tree ya branches serious injury ka sabab ban sakte hain.",steps:["Tree aur us ke aas paas ke area se door ho jayein.","Giri hui electric wires ke qareeb na jayein.","School staff aur emergency services ko inform karein.","Damaged tree ke neeche kharay na hon."]},
-    {title:"Roof Collapse",icon:"🏚️",intro:"Roof ya ceiling damage ho to building se safe evacuation zaroori hai.",steps:["Agar safe route available ho to affected area se nikal jayein.","Falling debris se door rahen.","Debris ke neeche phanse shakhs ko khud nikalne ki koshish na karein agar structure unstable ho.","Emergency responders ko location batayein."]}
-  ]
-},
-{
-  category:"Medical Conditions",
-  description:"Medical emergencies mein adult aur professional help hasil karein.",
-  items:[
-    {title:"Fainting or Blackout",icon:"😵",intro:"Behosh hone wale student ko safe jagah par rakhein aur adult ko bulayein.",steps:["Teacher ya school nurse ko foran bulayein.","Breathing check karein.","Normal breathing na ho to emergency services call karein aur CPR-trained hon to instructions follow karein.","Behosh shakhs ko khana ya pani na dein.","Agar breathing normal ho to recovery position mein rakhein jab tak injury ka shak na ho."]},
-    {title:"Heat Stroke",icon:"🥵",intro:"Severe heat illness jaan-lewa ho sakti hai aur urgent treatment zaroori hai.",steps:["Emergency medical help foran call karein.","Shakhs ko thandi jagah par le jayein.","Extra clothing hata kar cool water ya wet cloth se body cool karein.","Agar confusion ya behoshi ho to munh se pani na pilayein.","Medical responders ki instructions follow karein."]},
-    {title:"Breathing Trouble or Cough",icon:"🫁",intro:"Severe breathing difficulty medical emergency hai.",steps:["Teacher ya school nurse ko foran inform karein.","Shakhs ko comfortable position mein bithayein.","Agar unka prescribed rescue inhaler ho to unke personal medical plan ke mutabiq help karein.","Severe difficulty, blue lips ya collapse ho to emergency help call karein."]},
-    {title:"Injury",icon:"🩹",intro:"Injury ki severity assess karne ke liye responsible adult ko bulayein.",steps:["Dangerous area se door ho jayein.","Bleeding ho to clean cloth se direct pressure dein.","Suspected neck, back ya serious bone injury mein shakhs ko move na karein.","Serious injury par emergency services call karein."]},
-    {title:"Bleeding",icon:"🩸",intro:"Heavy bleeding mein prompt first aid aur emergency assistance zaroori hai.",steps:["Apne aap ko blood exposure se bachayein.","Clean cloth ya dressing se wound par firm direct pressure dein.","Cloth bheeg jaye to pehli layer hatane ke bajaye doosri layer add karein.","Heavy bleeding par emergency services call karein.","Embedded object ko wound se khud na nikalein."]},
-    {title:"Electric Shock",icon:"⚡",intro:"Electric current ke contact mein aaye shakhs ko touch karna dangerous ho sakta hai.",steps:["Power source ko safe tareeqe se band kiye baghair shakhs ko touch na karein.","Emergency services aur trained adult ko bulayein.","Power source se door rahen.","Current band hone ke baad breathing check karein aur dispatcher ki instructions follow karein."]},
-    {title:"Dehydration",icon:"💧",intro:"Pani ki kami dizziness, weakness aur serious illness ka sabab ban sakti hai.",steps:["Activity rok kar cool jagah par aaram karein.","Agar shakhs fully alert ho aur safely nigal sakta ho to pani dein.","Severe confusion, collapse ya behoshi ho to emergency help lein.","School nurse ya trusted adult ko inform karein."]},
-    {title:"Flu, Infection or Pandemic",icon:"😷",intro:"Infection ko phailne se rokne ke liye hygiene aur school health guidance follow karein.",steps:["Khansi ya chheenk tissue ya elbow mein karein.","Haath sabun se regularly dhoyein.","Bimaar hon to school health policy follow karein.","Shared bottles aur utensils use na karein.","Severe symptoms par medical advice lein."]},
-    {title:"Stomach Ache",icon:"🤒",intro:"Pet dard ki wajah mukhtalif ho sakti hai; adult ko batana zaroori hai.",steps:["Teacher, parent ya school nurse ko inform karein.","Aaram karein aur symptoms note karein.","Bina adult ya medical professional ke mashware ke medicine na lein.","Severe pain, fainting ya blood ho to urgent medical help lein."]},
-    {title:"Vomiting",icon:"🤢",intro:"Vomiting mein dehydration aur infection ka risk ho sakta hai.",steps:["Teacher ya school nurse ko inform karein.","Agar fully alert hon to chhote sips mein fluids lein.","Vomiting ke baad haath dhoyein aur contaminated surfaces clean karwayein.","Blood, severe pain ya dehydration ho to medical help lein."]},
-    {title:"Diarrhea",icon:"🚰",intro:"Diarrhea mein fluids ki kami ho sakti hai.",steps:["Trusted adult ya school nurse ko batayein.","Safe fluids ya oral rehydration solution medical guidance ke mutabiq use karein.","Toilet ke baad haath sabun se dhoyein.","Blood, severe dehydration ya persistent symptoms par medical care lein."]}
-  ]
+document.documentElement.lang=lang;
+document.documentElement.dir=lang==="ur"?"rtl":"ltr";
+
+try{localStorage.setItem("ss-language",lang)}catch(e){}
 }
-];
 
-const videos = [
- {icon:"🌎",title:"Earthquake Safety",category:"Natural Threats",search:"earthquake drop cover hold on safety for students"},
- {icon:"🌊",title:"Flood Safety",category:"Natural Threats",search:"flood safety awareness for children"},
- {icon:"🌧️",title:"Heavy Rain Safety",category:"Natural Threats",search:"heavy rain safety tips students"},
- {icon:"🌪️",title:"Storm Safety",category:"Natural Threats",search:"strong winds storm safety for children"},
- {icon:"🌳",title:"Falling Tree Safety",category:"Natural Threats",search:"storm fallen tree safety awareness"},
- {icon:"🏚️",title:"Roof Collapse Safety",category:"Natural Threats",search:"building collapse evacuation safety awareness"},
- {icon:"🔥",title:"Fire Safety",category:"External Threats",search:"school fire evacuation safety"},
- {icon:"🚨",title:"Intruder Safety",category:"External Threats",search:"school lockdown safety educational video"},
- {icon:"🥊",title:"Fight Prevention",category:"External Threats",search:"school fight prevention student safety"},
- {icon:"⚡",title:"Electrical Short Circuit",category:"External Threats",search:"electrical safety short circuit fire prevention"},
- {icon:"🏚️",title:"Unsafe Building",category:"External Threats",search:"unsafe building structural damage safety"},
- {icon:"🛑",title:"Hostage Threat Safety",category:"External Threats",search:"hostage situation public safety official guidance"},
- {icon:"⚠️",title:"Suspicious Object Safety",category:"External Threats",search:"suspicious package safety awareness"},
- {icon:"😵",title:"Fainting First Aid",category:"Medical Conditions",search:"fainting first aid school students"},
- {icon:"🥵",title:"Heat Stroke",category:"Medical Conditions",search:"heat stroke first aid prevention"},
- {icon:"🫁",title:"Breathing Trouble",category:"Medical Conditions",search:"breathing emergency first aid children"},
- {icon:"🩹",title:"Injury First Aid",category:"Medical Conditions",search:"basic first aid for students"},
- {icon:"🩸",title:"Bleeding First Aid",category:"Medical Conditions",search:"severe bleeding first aid direct pressure"},
- {icon:"⚡",title:"Electric Shock First Aid",category:"Medical Conditions",search:"electric shock first aid safety"},
- {icon:"💧",title:"Dehydration Prevention",category:"Medical Conditions",search:"dehydration prevention children school"},
- {icon:"😷",title:"Flu and Infection Prevention",category:"Medical Conditions",search:"flu prevention handwashing school children"},
- {icon:"🤒",title:"Stomach Ache",category:"Medical Conditions",search:"child stomach ache when to seek medical help"},
- {icon:"🤢",title:"Vomiting Care",category:"Medical Conditions",search:"vomiting dehydration first aid children"},
- {icon:"🚰",title:"Diarrhea and Hydration",category:"Medical Conditions",search:"diarrhea oral rehydration solution health education"},
- {icon:"🚑",title:"Emergency First Aid",category:"Medical Conditions",search:"basic first aid emergency response for students"},
- {icon:"🏫",title:"School Evacuation",category:"External Threats",search:"school emergency evacuation safety drill"}
-];
+try{
+languageSelect.value=localStorage.getItem("ss-language")||"en";
+}catch(e){languageSelect.value="en"}
 
-const emergencyContacts = [
- {name:"Rescue / Ambulance",number:"1122",icon:"🚑",color:"success",note:"Rescue and medical emergencies. Confirm local availability."},
- {name:"Police",number:"15",icon:"👮",color:"danger",note:"Police emergency in Pakistan."},
- {name:"Fire Brigade",number:"16",icon:"🔥",color:"danger",note:"Fire emergency; confirm local service availability."},
- {name:"Municipality",number:"1339",icon:"🏙️",color:"secondary",note:"Municipal assistance; verify this number in your area."},
- {name:"Edhi Ambulance",number:"115",icon:"🚑",color:"success",note:"Edhi emergency ambulance service."}
-];
+applyLanguage(languageSelect.value);
 
-function setStatus(id,message){$(id).textContent=message;}
-function showAuthForm(which){
-  $("loginForm").classList.toggle("hidden",which!=="login");
-  $("registerForm").classList.toggle("hidden",which!=="register");
-}
-$("showRegister").addEventListener("click",e=>{e.preventDefault();showAuthForm("register");});
-$("showLogin").addEventListener("click",e=>{e.preventDefault();showAuthForm("login");});
-
-$("loginBtn").addEventListener("click",async()=>{
-  const email=$("loginEmail").value.trim();
-  const password=$("loginPassword").value;
-  if(!email||!password){setStatus("loginStatus","Email aur password dono enter karo.");return;}
-  $("loginBtn").disabled=true;
-  setStatus("loginStatus","Logging in...");
-  try{
-    await signInWithEmailAndPassword(auth,email,password);
-    setStatus("loginStatus","Login successful.");
-  }catch(e){
-    setStatus("loginStatus",friendlyError(e));
-  }finally{$("loginBtn").disabled=false;}
+languageSelect.addEventListener("change",()=>{
+applyLanguage(languageSelect.value);
 });
 
-$("registerBtn").addEventListener("click",async()=>{
-  const name=$("registerName").value.trim();
-  const email=$("registerEmail").value.trim();
-  const password=$("registerPassword").value;
-  if(!name||!email||!password){setStatus("registerStatus","Saari fields fill karo.");return;}
-  if(password.length<6){setStatus("registerStatus","Password kam az kam 6 characters ka hona chahiye.");return;}
-  $("registerBtn").disabled=true;
-  setStatus("registerStatus","Account create ho raha hai...");
-  try{
-    const credential=await createUserWithEmailAndPassword(auth,email,password);
-    await updateProfile(credential.user,{displayName:name});
-    setStatus("registerStatus","Account create ho gaya!");
-  }catch(e){
-    setStatus("registerStatus",friendlyError(e));
-  }finally{$("registerBtn").disabled=false;}
-});
+/* ==========================================
+   TOAST
+========================================== */
 
-function friendlyError(e){
-  const messages={
-    "auth/invalid-email":"Email address sahi nahi hai.",
-    "auth/user-not-found":"Is email ka account nahi mila. Pehle register karo.",
-    "auth/wrong-password":"Password ghalat hai.",
-    "auth/invalid-credential":"Email ya password ghalat hai.",
-    "auth/email-already-in-use":"Is email se account pehle se mojood hai.",
-    "auth/weak-password":"Password kam az kam 6 characters ka rakho.",
-    "auth/too-many-requests":"Bohat zyada attempts hue hain. Thori dair baad try karo.",
-    "auth/network-request-failed":"Internet connection check karo.",
-    "auth/operation-not-allowed":"Firebase Console mein Email/Password sign-in enable karo."
-  };
-  return messages[e.code] || ("Error: "+(e.message||"Please try again."));
+let toastTimer;
+
+function showToast(message){
+const toast=document.getElementById("toast");
+toast.textContent=message;
+toast.classList.add("show");
+clearTimeout(toastTimer);
+toastTimer=setTimeout(()=>toast.classList.remove("show"),3000);
 }
 
-function showOnly(pageId){
-  ["dashboardPage","categoryPage","detailPage","videosPage","emergencyPage","buddyPage","savedPage","settingsPage"]
-  .forEach(id=>$(id).classList.toggle("hidden",id!==pageId));
-  window.scrollTo({top:0,behavior:"smooth"});
-}
-window.openPage=id=>showOnly(id);
-window.goHome=()=>showOnly("dashboardPage");
-window.openCategory=category=>{
-  activeCategory=category;
-  const data=categories.find(c=>c.category===category);
-  if(!data)return;
-  $("categoryTitle").textContent=data.category;
-  $("categoryDescription").textContent=data.description;
-  const grid=$("categoryGrid");
-  grid.innerHTML="";
-  data.items.forEach(item=>{
-    const card=document.createElement("article");
-    card.className="card";
-    const icon=document.createElement("div");icon.className="icon";icon.textContent=item.icon;
-    const title=document.createElement("h3");title.textContent=item.title;
-    const description=document.createElement("p");description.textContent=item.intro;
-    const button=document.createElement("button");button.textContent="Read Safety Steps →";
-    button.addEventListener("click",()=>openDetail(data.category,item));
-    card.append(icon,title,description,button);
-    grid.appendChild(card);
-  });
-  showOnly("categoryPage");
+/* ==========================================
+   SAFETY BUDDY
+========================================== */
+
+const safetyAnswers={
+earthquake:"1. DROP to your hands and knees.\n2. COVER your head and neck under a sturdy desk or table.\n3. HOLD ON until shaking stops.\n4. Stay away from windows.\n5. When safe, follow your school's evacuation instructions.",
+flood:"1. Move to higher ground if flooding threatens.\n2. Never walk or drive through floodwater.\n3. Avoid drains and electrical wires.\n4. Follow official alerts.\n5. Call local emergency services if trapped or in immediate danger.",
+fire:"1. Raise the alarm and leave immediately.\n2. Use stairs, not elevators.\n3. Stay low under smoke.\n4. Do not collect belongings.\n5. Never re-enter the building. Call emergency services from a safe location.",
+medical:"1. Call a responsible adult and emergency services.\n2. Make sure the area is safe.\n3. Do not move someone with a suspected serious injury unless immediate danger requires it.\n4. Do not give an unconscious person food or drink.\n5. Follow the emergency operator's instructions.",
+storm:"1. Go inside a substantial building or hard-topped vehicle.\n2. Stay away from windows.\n3. Avoid open fields, isolated trees and water.\n4. Do not use wired electrical equipment during lightning.\n5. Wait until the storm has passed.",
+electrical:"1. Never touch exposed wires or fallen power lines.\n2. Keep away from water near electrical equipment.\n3. Do not touch a person who may still be in contact with electricity.\n4. Call emergency services and the electricity provider.\n5. Wait for trained responders."
 };
-window.goBackCategory=()=>openCategory(activeCategory);
 
-function openDetail(category,item){
-  activeCategory=category;activeDetail=item;
-  $("detailCategory").textContent=category;
-  $("detailTitle").textContent=item.icon+" "+item.title;
-  $("detailIntro").textContent=item.intro;
-  const steps=$("detailSteps");steps.innerHTML="";
-  item.steps.forEach(step=>{
-    const li=document.createElement("li");li.textContent=step;steps.appendChild(li);
-  });
-  $("saveTipBtn").onclick=()=>saveTip(category,item);
-  $("findDetailVideo").onclick=()=>{
-    $("videoSearch").value=item.title;
-    renderVideos(item.title);
-    showOnly("videosPage");
-  };
-  showOnly("detailPage");
-}
-
-function getSaved(){
-  try{return JSON.parse(localStorage.getItem("schoolSafetySaved_"+(currentUser?.uid||"guest"))||"[]");}
-  catch{return [];}
-}
-function saveTip(category,item){
-  const saved=getSaved();
-  if(saved.some(t=>t.title===item.title)){
-    alert("Yeh tip pehle se saved hai.");
-    return;
-  }
-  saved.push({category,title:item.title,icon:item.icon,intro:item.intro,steps:item.steps});
-  localStorage.setItem("schoolSafetySaved_"+currentUser.uid,JSON.stringify(saved));
-  alert("Safety tip save ho gayi!");
-}
-function renderSaved(){
-  const grid=$("savedGrid");grid.innerHTML="";
-  const saved=getSaved();
-  $("emptySaved").classList.toggle("hidden",saved.length>0);
-  saved.forEach((tip,index)=>{
-    const card=document.createElement("div");card.className="card";
-    const title=document.createElement("h3");title.textContent=tip.icon+" "+tip.title;
-    const category=document.createElement("span");category.className="tag";category.textContent=tip.category;
-    const intro=document.createElement("p");intro.textContent=tip.intro;
-    const remove=document.createElement("button");remove.className="danger";remove.textContent="Remove";
-    remove.onclick=()=>{
-      const latest=getSaved();latest.splice(index,1);
-      localStorage.setItem("schoolSafetySaved_"+currentUser.uid,JSON.stringify(latest));
-      renderSaved();
-    };
-    card.append(category,title,intro,remove);grid.appendChild(card);
-  });
-}
-
-function renderVideos(filter=""){
-  const grid=$("videoGrid");grid.innerHTML="";
-  const query=filter.toLowerCase();
-  const list=videos.filter(v=>(v.title+" "+v.category+" "+v.search).toLowerCase().includes(query));
-  if(!list.length){
-    const p=document.createElement("p");p.className="muted";p.textContent="Is topic ke liye result nahi mila.";
-    grid.appendChild(p);return;
-  }
-  list.forEach(v=>{
-    const card=document.createElement("article");card.className="card";
-    const cover=document.createElement("div");cover.className="video-cover";cover.textContent=v.icon;
-    const tag=document.createElement("span");tag.className="tag";tag.textContent=v.category;
-    const title=document.createElement("h3");title.textContent=v.title;
-    const link=document.createElement("a");link.className="btn";link.textContent="▶ Find Videos";
-    link.href="https://www.youtube.com/results?search_query="+encodeURIComponent(v.search+" short educational video");
-    link.target="_blank";link.rel="noopener noreferrer";
-    card.append(cover,tag,title,link);grid.appendChild(card);
-  });
-}
-$("videoSearch").addEventListener("input",e=>renderVideos(e.target.value));
-
-function renderEmergency(){
-  const grid=$("emergencyGrid");grid.innerHTML="";
-  emergencyContacts.forEach(c=>{
-    const card=document.createElement("article");card.className="card";
-    const icon=document.createElement("div");icon.className="icon";icon.textContent=c.icon;
-    const title=document.createElement("h3");title.textContent=c.name;
-    const number=document.createElement("h2");number.textContent=c.number;
-    const note=document.createElement("p");note.textContent=c.note;
-    const link=document.createElement("a");link.className="btn "+c.color;link.textContent="Call "+c.number;link.href="tel:"+c.number;
-    card.append(icon,title,number,note,link);grid.appendChild(card);
-  });
-}
-
-function safetyAnswer(text){
-  const q=text.toLowerCase();
-  if(!q.trim())return "Please apni safety problem likho.";
-  if(/fire|aag|smoke|dhua/.test(q))
-    return "🔥 FIRE SAFETY\n1. Fire alarm raise karo aur teacher ko inform karo.\n2. Safe exit se building se bahar niklo.\n3. Lift use na karo aur smoke se bach kar raho.\n4. Safe meeting point par jao.\n5. Emergency services ko call karo.";
-  if(/earthquake|zalzala|quake/.test(q))
-    return "🌎 EARTHQUAKE SAFETY\n1. Drop, Cover and Hold On.\n2. Desk ke neeche cover lo aur windows se door raho.\n3. Shaking rukne tak protected raho.\n4. Baad mein school instructions ke mutabiq evacuate karo.";
-  if(/flood|barish|rain|storm|toofan/.test(q))
-    return "🌧️ WEATHER SAFETY\n1. Flood water aur drains se door raho.\n2. Zaroorat par higher ground par jao.\n3. Storm mein indoor safe jagah par raho.\n4. Adults aur local authorities ki instructions follow karo.";
-  if(/intruder|attacker|gun|hostage|hijack/.test(q))
-    return "🚨 THREAT SAFETY\n1. Agar safe ho to area se door nikal jao.\n2. Warna locked room mein chup kar darwaza secure karo.\n3. Phone silent rakho aur confrontation na karo.\n4. Safe hone par police ko contact karo.";
-  if(/bleed|blood|khoon/.test(q))
-    return "🩸 BLEEDING\n1. Adult aur medical help bulao.\n2. Clean cloth se direct pressure do, agar safely kar sakte ho.\n3. Heavy bleeding par emergency services call karo.\n4. Severe injury ko ignore na karo.";
-  if(/heat stroke|heat|garmi/.test(q))
-    return "🥵 HEAT ILLNESS\n1. Emergency medical help bulao agar severe symptoms hon.\n2. Cool jagah par le jao.\n3. Body ko cool karna shuru karo.\n4. Confusion ya unconsciousness ho to munh se pani na do.";
-  if(/breath|asthma|saans/.test(q))
-    return "🫁 BREATHING TROUBLE\n1. Teacher ya nurse ko foran bulao.\n2. Shakhs ko comfortable position mein rakho.\n3. Severe breathing difficulty par emergency services call karo.\n4. Prescribed medicine sirf unke medical plan ke mutabiq use karne mein help karo.";
-  if(/faint|unconscious|behosh|blackout/.test(q))
-    return "😵 FAINTING\n1. Adult ko foran bulao.\n2. Breathing check karo.\n3. Normal breathing na ho to emergency call karo aur dispatcher ki instructions follow karo.\n4. Behosh shakhs ko khana ya pani na do.";
-  if(/electric|shock|wire|current|short circuit/.test(q))
-    return "⚡ ELECTRICAL SAFETY\n1. Current ke contact mein aaye shakhs ko touch na karo jab tak power safely off na ho.\n2. Area se door raho.\n3. Adult aur emergency responders ko bulao.\n4. Electric fire par pani na phenko.";
-  if(/fight|clash|larai/.test(q))
-    return "🥊 FIGHT SAFETY\n1. Fight se safe distance rakho.\n2. Khud physically intervene na karo.\n3. Teacher ya security ko bulao.\n4. Injury ho to medical assistance hasil karo.";
-  if(/injury|hurt|zakhm|fracture/.test(q))
-    return "🩹 INJURY\n1. Adult ya school nurse ko bulao.\n2. Serious neck/back injury mein shakhs ko move na karo.\n3. Bleeding par clean cloth se pressure do.\n4. Serious injury par emergency services call karo.";
-  if(/vomit|ulti|diarrhea|loose motion|stomach|pet dard|dehydrat/.test(q))
-    return "💧 STOMACH / DEHYDRATION\n1. School nurse ya trusted adult ko batao.\n2. Fully alert hon to fluids ke chhote sips le sakte hain.\n3. Severe pain, blood, confusion ya dehydration par medical help lo.\n4. Bina medical advice ke medicine na lo.";
-  if(/flu|infection|pandemic|cough|khansi|fever|bukhar/.test(q))
-    return "😷 INFECTION PREVENTION\n1. Haath sabun se dhoyein.\n2. Khansi ya chheenk ko tissue/elbow se cover karein.\n3. Bimaar hon to school health policy follow karein.\n4. Severe symptoms par medical advice lein.";
-  if(/roof|building|collapse|ceiling/.test(q))
-    return "🏚️ BUILDING SAFETY\n1. Damaged area se door ho jao.\n2. Safe route ho to bahar niklo.\n3. Unstable debris mein khud rescue attempt na karo.\n4. Emergency responders ko location batao.";
-  return "🛡️ GENERAL SAFETY\n1. Pehle apni safety ko priority do.\n2. Teacher, school nurse ya trusted adult ko inform karo.\n3. Dangerous area se door raho.\n4. Immediate danger ho to appropriate emergency service call karo.\n\nApni problem ko thora detail mein likho taake relevant basic guidance mil sake.";
-}
-$("askBuddyBtn").addEventListener("click",()=>{
-  $("buddyAnswer").textContent=safetyAnswer($("buddyInput").value);
-  $("buddyAnswer").classList.remove("hidden");
+document.getElementById("buddyButton").addEventListener("click",()=>{
+const scenario=document.getElementById("buddyScenario").value;
+document.getElementById("buddyResult").textContent=safetyAnswers[scenario]||safetyAnswers.earthquake;
 });
 
-$("saveProfileBtn").addEventListener("click",async()=>{
-  if(!currentUser)return;
-  const name=$("profileName").value.trim();
-  if(!name){setStatus("profileStatus","Name enter karo.");return;}
-  try{
-    await updateProfile(currentUser,{displayName:name});
-    $("userName").textContent=name;
-    setStatus("profileStatus","Display name save ho gaya.");
-  }catch(e){setStatus("profileStatus",friendlyError(e));}
-});
+/* ==========================================
+   BUILT-IN SAFETY ASSISTANT
+   This is a local rule-based helper, not a
+   connected generative AI service.
+========================================== */
 
-async function logout(){
-  try{await signOut(auth);}
-  catch(e){alert(friendlyError(e));}
+const chatMessages=document.getElementById("chatMessages");
+const chatForm=document.getElementById("chatForm");
+const chatInput=document.getElementById("chatInput");
+
+function addMessage(text,type){
+const div=document.createElement("div");
+div.className="message "+type;
+div.textContent=text;
+chatMessages.appendChild(div);
+chatMessages.scrollTop=chatMessages.scrollHeight;
 }
-$("logoutBtn").addEventListener("click",logout);
-$("settingsLogoutBtn").addEventListener("click",logout);
 
-onAuthStateChanged(auth,user=>{
-  currentUser=user;
-  $("authScreen").classList.toggle("hidden",!!user);
-  $("appScreen").classList.toggle("hidden",!user);
-  if(user){
-    $("userName").textContent=user.displayName||user.email;
-    $("profileEmail").textContent="Email: "+user.email;
-    $("profileName").value=user.displayName||"";
-    renderVideos();
-    renderEmergency();
-    renderSaved();
-    showOnly("dashboardPage");
-  }
+function getSafetyAnswer(question){
+const q=question.toLowerCase();
+
+if(/earthquake|زلزلہ|زلزلو|bhookamp/.test(q)){
+return safetyAnswers.earthquake;
+}
+if(/flood|rain|بارش|سیلاب|ٻوڏ|مينهن/.test(q)){
+return safetyAnswers.flood;
+}
+if(/fire|آگ|باهه/.test(q)){
+return safetyAnswers.fire;
+}
+if(/medical|injury|injured|ambulance|زخمی|طبي|چوٹ/.test(q)){
+return safetyAnswers.medical;
+}
+if(/thunder|lightning|storm|بجلی|طوفان/.test(q)){
+return safetyAnswers.storm;
+}
+if(/electric|wire|shock|کرنٹ|تار/.test(q)){
+return safetyAnswers.electrical;
+}
+if(/police|پولیس/.test(q)){
+return "If you are in immediate danger in Pakistan, call Police 15 where available. Move to a safe place and tell a trusted adult. Do not confront a dangerous person.";
+}
+if(/1122|emergency|helpline|ایمرجنسی/.test(q)){
+return "For Rescue/Ambulance services in areas where available, call 1122. Pakistan Police: 15 where available. Availability varies by location. Tell the operator your location and what happened.";
+}
+if(/hello|hi|salam|assalam/.test(q)){
+return "Hello! 👋 Ask me about earthquake, flood, fire, thunderstorm, electrical safety or medical emergencies.";
+}
+return "I can help with basic guidance about earthquakes, floods, heavy rain, fire, medical emergencies, thunderstorms and electrical hazards. If someone is in immediate danger, contact local emergency services and a trusted adult now.";
+}
+
+function sendQuestion(question){
+const text=question.trim();
+if(!text)return;
+addMessage(text,"user");
+chatInput.value="";
+setTimeout(()=>addMessage(getSafetyAnswer(text),"bot"),200);
+}
+
+chatForm.addEventListener("submit",event=>{
+event.preventDefault();
+sendQuestion(chatInput.value);
 });
+
+document.querySelectorAll(".quick-question").forEach(button=>{
+button.addEventListener("click",()=>{
+const topic=button.dataset.question;
+sendQuestion(topic);
+});
+});
+
+/* ==========================================
+   FIREBASE LOGIN / REGISTER
+   Existing project configuration
+========================================== */
+
+const FIREBASE_CONFIG={
+apiKey:"AIzaSyDFb_QOeLL_7IsvSEum4fchb8xdub1al_g",
+authDomain:"school-safety-app-e387e.firebaseapp.com",
+projectId:"school-safety-app-e387e",
+storageBucket:"school-safety-app-e387e.firebasestorage.app",
+messagingSenderId:"528794286660",
+appId:"1:528794286660:web:c70c1403aed13eda6a9a11",
+measurementId:"G-3EEEWP9R3D"
+};
+
+let firebaseAuth=null;
+let firebaseFunctions=null;
+let authMode="register";
+
+const authForm=document.getElementById("authForm");
+const authTitle=document.getElementById("authTitle");
+const authDescription=document.getElementById("authDescription");
+const authName=document.getElementById("authName");
+const nameField=document.getElementById("nameField");
+const authEmail=document.getElementById("authEmail");
+const authPassword=document.getElementById("authPassword");
+const authSubmit=document.getElementById("authSubmit");
+const authMessage=document.getElementById("authMessage");
+const authSwitchText=document.getElementById("authSwitchText");
+const authSwitchButton=document.getElementById("authSwitchButton");
+const loggedInPanel=document.getElementById("loggedInPanel");
+
+function setAuthMessage(message,isError=false){
+authMessage.textContent=message;
+authMessage.style.color=isError?"#ff7085":"#26e6a5";
+}
+
+function setAuthMode(mode){
+authMode=mode;
+const registering=mode==="register";
+
+authTitle.textContent=registering?"Create Account":"Welcome Back";
+authDescription.textContent=registering
+?"School Safety AI | Smart Student Protection"
+:"Log in to your School Safety account";
+authSubmit.textContent=registering?"Register":"Login";
+authSwitchText.textContent=registering
+?"Already have an account?"
+:"Don't have an account?";
+authSwitchButton.textContent=registering?"Login":"Register";
+nameField.classList.toggle("hidden",!registering);
+authName.required=registering;
+authPassword.autocomplete=registering?"new-password":"current-password";
+setAuthMessage("");
+}
+
+authSwitchButton.addEventListener("click",()=>{
+setAuthMode(authMode==="register"?"login":"register");
+});
+
+function showLoggedIn(user){
+authForm.classList.add("hidden");
+document.querySelector(".auth-switch").classList.add("hidden");
+loggedInPanel.classList.remove("hidden");
+document.getElementById("welcomeUser").textContent=
+"Welcome, "+(user.displayName||user.email||"Student")+"!";
+document.getElementById("userEmail").textContent=user.email||"";
+setAuthMessage("You are signed in successfully.");
+}
+
+function showLoggedOut(){
+authForm.classList.remove("hidden");
+document.querySelector(".auth-switch").classList.remove("hidden");
+loggedInPanel.classList.add("hidden");
+}
+
+function readableAuthError(error){
+const errors={
+"auth/email-already-in-use":"This email is already registered. Please log in.",
+"auth/invalid-email":"Please enter a valid email address.",
+"auth/weak-password":"Password is too weak. Use at least 6 characters.",
+"auth/invalid-credential":"Incorrect email or password. Please try again.",
+"auth/user-not-found":"No account found. Please register first.",
+"auth/wrong-password":"Incorrect password. Please try again.",
+"auth/too-many-requests":"Too many attempts. Please wait and try again.",
+"auth/network-request-failed":"Network error. Please check your internet connection.",
+"auth/operation-not-allowed":"Email/Password authentication is disabled in Firebase Console.",
+"auth/invalid-api-key":"Firebase API key is invalid. Check the Firebase configuration.",
+"auth/app-not-authorized":"This website domain is not authorized in Firebase.",
+"auth/configuration-not-found":"Firebase Authentication configuration was not found."
+};
+return errors[error.code]||("Error: "+(error.message||"Please try again."));
+}
+
+authForm.addEventListener("submit",async event=>{
+event.preventDefault();
+
+const name=authName.value.trim();
+const email=authEmail.value.trim();
+const password=authPassword.value;
+
+if(authMode==="register"&&!name){
+setAuthMessage("Please enter your full name.",true);
+return;
+}
+
+if(password.length<6){
+setAuthMessage("Password must contain at least 6 characters.",true);
+return;
+}
+
+if(!firebaseAuth||!firebaseFunctions){
+setAuthMessage("Firebase is not connected yet. Check your internet and Firebase configuration.",true);
+return;
+}
+
+authSubmit.disabled=true;
+authSwitchButton.disabled=true;
+setAuthMessage(authMode==="register"?"Creating your account...":"Logging in...");
+
+try{
+if(authMode==="register"){
+const result=await firebaseFunctions.createUserWithEmailAndPassword(
+firebaseAuth,email,password
+);
+await firebaseFunctions.updateProfile(result.user,{displayName:name});
+showLoggedIn(result.user);
+showToast("Account created successfully!");
+}else{
+const result=await firebaseFunctions.signInWithEmailAndPassword(
+firebaseAuth,email,password
+);
+showLoggedIn(result.user);
+showToast("Login successful!");
+}
+}catch(error){
+setAuthMessage(readableAuthError(error),true);
+}finally{
+authSubmit.disabled=false;
+authSwitchButton.disabled=false;
+}
+});
+
+document.getElementById("logoutButton").addEventListener("click",async()=>{
+if(!firebaseAuth||!firebaseFunctions)return;
+try{
+await firebaseFunctions.signOut(firebaseAuth);
+showLoggedOut();
+setAuthMode("login");
+setAuthMessage("You have logged out.");
+showToast("Logged out successfully.");
+}catch(error){
+setAuthMessage(readableAuthError(error),true);
+}
+});
+
+async function initializeFirebase(){
+try{
+const appModule=await import("https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js");
+const authModule=await import("https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js");
+
+const app=appModule.initializeApp(FIREBASE_CONFIG);
+firebaseAuth=authModule.getAuth(app);
+
+firebaseFunctions={
+createUserWithEmailAndPassword:authModule.createUserWithEmailAndPassword,
+signInWithEmailAndPassword:authModule.signInWithEmailAndPassword,
+updateProfile:authModule.updateProfile,
+signOut:authModule.signOut,
+onAuthStateChanged:authModule.onAuthStateChanged
+};
+
+firebaseFunctions.onAuthStateChanged(firebaseAuth,user=>{
+if(user){
+showLoggedIn(user);
+}else{
+showLoggedOut();
+}
+});
+}catch(error){
+console.error("Firebase initialization failed:",error);
+setAuthMessage("Firebase connection failed. Check your internet, Firebase settings and authorized domain.",true);
+}
+}
+
+setAuthMode("register");
+initializeFirebase();
 </script>
+
 </body>
 </html>
